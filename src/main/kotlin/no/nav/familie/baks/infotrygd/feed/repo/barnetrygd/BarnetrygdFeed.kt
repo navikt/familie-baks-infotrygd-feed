@@ -42,7 +42,7 @@ data class BarnetrygdFeed(
 
 ) {
     override fun toString(): String =
-        "BarnetrygdFeed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
+        "BarnetrygdFeed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat)"
 }
 
 @Suppress("ktlint:enum-entry-name-case")

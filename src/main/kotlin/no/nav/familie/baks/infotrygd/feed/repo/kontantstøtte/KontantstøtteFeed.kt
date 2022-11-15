@@ -26,27 +26,21 @@ data class KontantstøtteFeed(
     val type: KontantstøtteType,
 
     @Column(name = "fnr_stonadsmottaker", nullable = true)
-    var fnrStonadsmottaker: String? = null,
+    var fnrStønadsmottaker: String? = null,
 
-    @Column(name = "dato_start_ny_ba", nullable = true)
-    var datoStartNyBa: LocalDate? = null,
-
-    @Column(name = "fnr_barn", nullable = true)
-    var fnrBarn: String? = null,
-
-    @Column(name = "er_duplikat", nullable = true)
-    var duplikat: Boolean? = false,
+    @Column(name = "dato_start_ny_ks", nullable = true)
+    var datoStartNyKS: LocalDate? = null,
 
     @Column(name = "opprettet_dato", nullable = true)
     var opprettetDato: LocalDateTime
 
 ) {
     override fun toString(): String =
-        "KontantstøtteFeed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
+        "KontantstøtteFeed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyKS)"
 }
 
 @Suppress("ktlint:enum-entry-name-case")
 enum class KontantstøtteType {
-    KS_Vedtak_v1,
+    KS_Vedtak,
     KS_StartBeh
 }
