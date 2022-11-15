@@ -41,10 +41,8 @@ data class KontantstøtteFeed(
     var opprettetDato: LocalDateTime
 
 ) {
-
-    override fun toString(): String {
-        return "Feed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
-    }
+    override fun toString(): String =
+        "KontantstøtteFeed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
 }
 
 @Suppress("ktlint:enum-entry-name-case")
