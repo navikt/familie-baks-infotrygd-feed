@@ -65,6 +65,11 @@
             <version>${felles.version}</version>
         </dependency>
         <dependency>
+            <groupId>no.nav.familie.felles</groupId>
+            <artifactId>http-client</artifactId>
+            <version>${felles.version}</version>
+        </dependency>
+        <dependency>
             <groupId>no.nav.security</groupId>
             <artifactId>token-validation-spring</artifactId>
             <version>${token-validation-spring.version}</version>
@@ -84,10 +89,10 @@
             <artifactId>postgresql</artifactId>
             <version>42.5.0</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-        </dependency>-->
+        </dependency>
 
         <!-- test avhengigheter -->
         <dependency>

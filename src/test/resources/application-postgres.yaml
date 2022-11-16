@@ -1,15 +1,8 @@
-no.nav.security.jwt:
-  issuer.sts:
-    discoveryurl: http://metadata
-    accepted_audience: aud-localhost
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/familie-baks-infotrygd-feed
     password: test
     username: postgres
-  flyway:
-    enabled: true
   jpa:
     show-sql: true
     properties:
@@ -17,3 +10,7 @@ spring:
         format_sql=false
     hibernate:
       ddl-auto: none
+
+AZURE_APP_WELL_KNOWN_URL: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration
+AZURE_APP_CLIENT_ID: testid
+AZURE_APP_CLIENT_SECRET: testsecret
