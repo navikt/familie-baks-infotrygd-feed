@@ -49,4 +49,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # midlertidig oppsett -DfailIfNoTests=false for å kjøre bygg uten enhetstester. Blir fjernet etter å legge til enhetstester
-          mvn -B --no-transfer-progress verify --settings .m2/maven-settings.xml --file pom.xml -Dtest="no/nav/familie/baks/infotrygd/feed/** -DfailIfNoTests=false"
+          mvn -B --no-transfer-progress verify --settings .m2/maven-settings.xml --file pom.xml -Dtest="no/nav/familie/baks/infotrygd/feed/**" -DfailIfNoTests="false"
