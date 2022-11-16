@@ -1,0 +1,52 @@
+name: Pull request
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+env:
+  IMAGE: ghcr.io/navikt/familie-baks-infotrygd-feed:${{ github.sha }}
+jobs:
+  avslutt-andre-workflows-samme-branch:
+    name: Avslutt andre workflows på samme branch
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          access_token: ${{ github.token }}
+  ktlint:
+    name: Ktlint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Kjør ktlint
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn antrun:run@ktlint
+  enhetstester:
+    name: Enhetstester
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-java@v3"
+        with:
+          java-version: "17"
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Kjør enhetstester
+        env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # midlertidig oppsett -DfailIfNoTests=false for å kjøre bygg uten enhetstester. Blir fjernet etter å legge til enhetstester
+          mvn -B --no-transfer-progress verify --settings .m2/maven-settings.xml --file pom.xml -Dtest="no/nav/familie/baks/infotrygd/feed/**" -DfailIfNoTests="false"
