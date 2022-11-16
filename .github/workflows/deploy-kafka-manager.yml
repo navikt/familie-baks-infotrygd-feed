@@ -1,0 +1,16 @@
+name: Deploy familie-ks-kafka-manager
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy familie-baks-infotrygd-feed-kafka-manager til dev
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .deploy/nais/kafka-manager/preprod/familie-baks-infotrygd-feed-kafka-manager.yml
