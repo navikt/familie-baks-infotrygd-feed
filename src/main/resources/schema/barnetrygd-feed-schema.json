@@ -1,5 +1,5 @@
 {
-  "$id": "http://no.nav.familie.baks.infotrygd.feed",
+  "$id": "http://no.nav.familie.ba.infotrygd.feed",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
