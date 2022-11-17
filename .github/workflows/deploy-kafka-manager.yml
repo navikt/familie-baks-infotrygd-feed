@@ -1,4 +1,4 @@
-name: Deploy familie-ks-kafka-manager
+name: Deploy familie-baks-infotrygd-feed-kafka-manager
 on:
   workflow_dispatch:
 

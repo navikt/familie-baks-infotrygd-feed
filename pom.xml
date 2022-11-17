@@ -21,6 +21,7 @@
         <kotlin.version>1.7.21</kotlin.version>
         <felles.version>1.20221101085322_cc4d556</felles.version>
         <token-validation-spring.version>2.1.7</token-validation-spring.version>
+        <springdoc.version>1.6.12</springdoc.version>
     </properties>
     <dependencies>
         <!-- Kotlin -->
@@ -110,6 +111,26 @@
             <artifactId>postgresql</artifactId>
             <version>1.17.6</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- swagger -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-kotlin</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+
+        <!-- Annet -->
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <scope>test</scope>
+            <version>1.0.73</version>
         </dependency>
     </dependencies>
 
