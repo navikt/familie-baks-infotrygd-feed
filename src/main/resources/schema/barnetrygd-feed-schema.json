@@ -1,0 +1,119 @@
+{
+  "$id": "http://no.nav.familie.baks.infotrygd.feed",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "tittel": {
+      "$id": "/properties/tittel",
+      "type": "string",
+      "title": "Tittel på JSON-feeden"
+    },
+    "inneholderFlereElementer": {
+      "$id": "/properties/inneholderFlereElementer",
+      "type": "boolean",
+      "title": "Har feeden flere elementer ",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "elementer": {
+      "$id": "/properties/elementer",
+      "type": "array",
+      "items": {
+        "$id": "/properties/elementer/items",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$id": "/properties/elementer/items/properties/type",
+            "type": "string",
+            "title": "Type forretningshendelse",
+            "examples": [
+              "BA_Foedsel_v1"
+            ],
+            "enum": [
+              "BA_Vedtak_v1",
+              "BA_Foedsel_v1",
+              "BA_StartBeh"
+            ]
+          },
+          "sekvensId": {
+            "$id": "/properties/elementer/items/properties/sekvensId",
+            "type": "integer",
+            "title": "Sekvensnummer",
+            "description": "Unik løpenummer for feeden. Stigende rekkefølge. Det kan være hull i rekkefølgen",
+            "examples": [
+              1
+            ]
+          },
+          "metadata": {
+            "$id": "/properties/elementer/items/properties/metadata",
+            "type": "object",
+            "properties": {
+              "opprettetDato": {
+                "$id": "/properties/elementer/items/properties/metadata/properties/opprettetDato",
+                "type": "string",
+                "title": "Tidspunkt hendelsen var opprettet i feeden",
+                "examples": [
+                  "2018-04-18T09:03:29.202"
+                ]
+              }
+            },
+            "required": [
+              "opprettetDato"
+            ]
+          },
+          "innhold": {
+            "$id": "/properties/elementer/items/properties/innhold",
+            "type": "object",
+            "properties": {
+              "fnrStoenadsmottaker": {
+                "$id": "/properties/elementer/items/properties/innhold/properties/fnrStoenadsmottaker",
+                "type": "string",
+                "pattern": "^([0-9]{11})$",
+                "title": "Fnr for den som mottar stønaden"
+              },
+              "datoStartNyBA": {
+                "$id": "/properties/elementer/items/properties/innhold/properties/datoStartNyBA",
+                "type": "string",
+                "format": "date",
+                "title": "Første dato stønad utbetales fra ny løsning",
+                "examples": [
+                  "2018-04-18"
+                ]
+              },
+              "fnrBarn": {
+                "$id": "/properties/elementer/items/properties/innhold/properties/fnrBarn",
+                "type": "string",
+                "pattern": "^([0-9]{11})$",
+                "title": "Fnr for mottakende barn"
+              }
+            },
+            "oneOf": [
+              {
+                "required": [
+                  "fnrStoenadsmottaker"
+                ]
+              },
+              {
+                "required": [
+                  "fnrBarn"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "sekvensId",
+        "metadata",
+        "innhold"
+      ]
+    }
+  },
+  "required": [
+    "tittel",
+    "elementer"
+  ]
+}

@@ -51,6 +51,9 @@ spec:
         - application: ida
           namespace: traktor
           cluster: prod-fss
+        - application: infotrygd-feed-konsument
+          namespace: infotrygd
+          cluster: dev-fss
   replicas:
     min: 1
     max: 1

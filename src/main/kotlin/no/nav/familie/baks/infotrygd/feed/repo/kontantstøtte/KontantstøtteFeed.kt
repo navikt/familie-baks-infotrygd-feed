@@ -25,11 +25,11 @@ data class KontantstøtteFeed(
     @Column(name = "type", nullable = false)
     val type: KontantstøtteType,
 
-    @Column(name = "fnr_stonadsmottaker", nullable = true)
-    var fnrStønadsmottaker: String? = null,
+    @Column(name = "fnr_stonadsmottaker", nullable = false)
+    var fnrStønadsmottaker: String,
 
-    @Column(name = "dato_start_ny_ks", nullable = true)
-    var datoStartNyKS: LocalDate? = null,
+    @Column(name = "dato_start_ny_ks", nullable = false)
+    var datoStartNyKS: LocalDate,
 
     @Column(name = "opprettet_dato", nullable = true)
     var opprettetDato: LocalDateTime
