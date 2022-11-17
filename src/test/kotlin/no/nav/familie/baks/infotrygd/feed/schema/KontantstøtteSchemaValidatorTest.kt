@@ -9,8 +9,8 @@ import com.networknt.schema.SpecVersion
 import com.networknt.schema.ValidatorTypeCode
 import no.nav.familie.baks.infotrygd.feed.api.dto.ElementMetadata
 import no.nav.familie.baks.infotrygd.feed.api.dto.FeedMeldingDto
-import no.nav.familie.baks.infotrygd.feed.api.dto.InnholdStartBehandling
 import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.InnholdVedtak
+import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.InnholdStartBehandling
 import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.KontantstøtteFeedElement
 import no.nav.familie.baks.infotrygd.feed.repo.kontantstøtte.KontantstøtteType
 import no.nav.familie.kontrakter.felles.objectMapper
