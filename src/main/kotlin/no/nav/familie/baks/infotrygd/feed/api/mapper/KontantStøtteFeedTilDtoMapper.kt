@@ -2,7 +2,6 @@ package no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte
 
 import no.nav.familie.baks.infotrygd.feed.api.dto.ElementMetadata
 import no.nav.familie.baks.infotrygd.feed.api.dto.FeedMeldingDto
-import no.nav.familie.baks.infotrygd.feed.api.dto.InnholdStartBehandling
 import no.nav.familie.baks.infotrygd.feed.repo.kontantstøtte.KontantstøtteFeed
 import no.nav.familie.baks.infotrygd.feed.repo.kontantstøtte.KontantstøtteType
 

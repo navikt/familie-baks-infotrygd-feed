@@ -2,7 +2,6 @@ package no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd
 
 import no.nav.familie.baks.infotrygd.feed.api.dto.ElementMetadata
 import no.nav.familie.baks.infotrygd.feed.api.dto.FeedMeldingDto
-import no.nav.familie.baks.infotrygd.feed.api.dto.InnholdStartBehandling
 import no.nav.familie.baks.infotrygd.feed.repo.barnetrygd.BarnetrygdFeed
 import no.nav.familie.baks.infotrygd.feed.repo.barnetrygd.BarnetrygdType
 
