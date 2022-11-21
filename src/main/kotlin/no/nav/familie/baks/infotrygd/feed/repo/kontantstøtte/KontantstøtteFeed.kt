@@ -1,5 +1,6 @@
 package no.nav.familie.baks.infotrygd.feed.repo.kontantstøtte
 
+import no.nav.familie.kontrakter.ks.infotrygd.feed.KontantstøtteType
 import java.time.LocalDate
 import java.time.LocalDateTime
 import javax.persistence.Column
@@ -37,10 +38,4 @@ data class KontantstøtteFeed(
 ) {
     override fun toString(): String =
         "KontantstøtteFeed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyKS)"
-}
-
-@Suppress("ktlint:enum-entry-name-case")
-enum class KontantstøtteType {
-    KS_Vedtak,
-    KS_StartBeh
 }

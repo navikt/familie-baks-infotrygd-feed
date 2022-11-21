@@ -30,17 +30,17 @@ class BarnetrygdInfotrygdFeedController(private val infotrygdFeedService: Infotr
     ): ResponseEntity<FeedMeldingDto> =
         Result.runCatching { infotrygdFeedService.hentBarnetrygdMeldingerFraFeed(sistLestSekvensId = sekvensnummer) }.fold(
             onSuccess = { feed ->
-                log.info("Hentet ${feed.elementer.size} feeds fra sekvensnummer $sekvensnummer")
+                logger.info("Hentet ${feed.elementer.size} feeds fra sekvensnummer $sekvensnummer")
                 ResponseEntity.ok(feed)
             },
             onFailure = {
-                log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
+                logger.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
             }
         )
 
     companion object {
-        private val log = LoggerFactory.getLogger(this::class.java)
+        private val logger = LoggerFactory.getLogger(this::class.java)
         private val secureLogger = LoggerFactory.getLogger("secureLogger")
     }
 }

@@ -11,5 +11,9 @@ spring:
     hibernate:
       ddl-auto: none
 
+funksjonsbrytere:
+  kafka:
+    consumer:
+      enabled: false
+
 AZURE_APP_WELL_KNOWN_URL: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration
-#AZURE_APP_CLIENT_SECRET: testsecret

@@ -12,8 +12,8 @@ import no.nav.familie.baks.infotrygd.feed.api.dto.FeedMeldingDto
 import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.InnholdVedtak
 import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.InnholdStartBehandling
 import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.KontantstøtteFeedElement
-import no.nav.familie.baks.infotrygd.feed.repo.kontantstøtte.KontantstøtteType
 import no.nav.familie.kontrakter.felles.objectMapper
+import no.nav.familie.kontrakter.ks.infotrygd.feed.KontantstøtteType
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

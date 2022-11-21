@@ -1,9 +1,12 @@
 package no.nav.familie.baks.infotrygd.feed.repo.barnetrygd
 
+import no.nav.familie.kontrakter.ba.infotrygd.feed.BarnetrygdType
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
+import org.springframework.stereotype.Repository
 
+@Repository
 interface BarnetrygdFeedRepository : JpaRepository<BarnetrygdFeed, Long> {
 
     @Query(
@@ -19,6 +22,6 @@ interface BarnetrygdFeedRepository : JpaRepository<BarnetrygdFeed, Long> {
     )
     fun erDuplikatFoedselsmelding(type: BarnetrygdType, fnrBarn: String): Boolean
 
-    @Query(value = "SELECT f FROM BarnetrygdFeed f WHERE f.fnrStonadsmottaker = :fnr OR f.fnrBarn = :fnr")
+    @Query(value = "SELECT f FROM BarnetrygdFeed f WHERE f.fnrStønadsmottaker = :fnr OR f.fnrBarn = :fnr")
     fun finnMeldingerForFnr(fnr: String): List<BarnetrygdFeed>
 }

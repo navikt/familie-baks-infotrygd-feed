@@ -3,7 +3,7 @@ package no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd
 import no.nav.familie.baks.infotrygd.feed.api.dto.ElementMetadata
 import no.nav.familie.baks.infotrygd.feed.api.dto.FeedMeldingDto
 import no.nav.familie.baks.infotrygd.feed.repo.barnetrygd.BarnetrygdFeed
-import no.nav.familie.baks.infotrygd.feed.repo.barnetrygd.BarnetrygdType
+import no.nav.familie.kontrakter.ba.infotrygd.feed.BarnetrygdType
 
 fun konverterTilFeedMeldingDto(feedListe: List<BarnetrygdFeed>): FeedMeldingDto =
     FeedMeldingDto(
@@ -17,11 +17,11 @@ fun konverterTilFeedMeldingDto(feedListe: List<BarnetrygdFeed>): FeedMeldingDto 
                     BarnetrygdType.BA_Vedtak_v1 -> {
                         InnholdVedtak(
                             datoStartNyBA = checkNotNull(it.datoStartNyBa),
-                            fnrStoenadsmottaker = checkNotNull(it.fnrStonadsmottaker)
+                            fnrStoenadsmottaker = checkNotNull(it.fnrStønadsmottaker)
                         )
                     }
                     BarnetrygdType.BA_StartBeh -> {
-                        InnholdStartBehandling(fnrStoenadsmottaker = checkNotNull(it.fnrStonadsmottaker))
+                        InnholdStartBehandling(fnrStoenadsmottaker = checkNotNull(it.fnrStønadsmottaker))
                     }
                     else -> {
                         InnholdFødsel(fnrBarn = checkNotNull(it.fnrBarn))

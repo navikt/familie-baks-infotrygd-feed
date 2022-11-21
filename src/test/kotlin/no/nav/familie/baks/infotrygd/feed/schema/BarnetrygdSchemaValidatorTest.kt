@@ -13,7 +13,7 @@ import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.BarnetrygdFeedEleme
 import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.InnholdFødsel
 import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.InnholdStartBehandling
 import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.InnholdVedtak
-import no.nav.familie.baks.infotrygd.feed.repo.barnetrygd.BarnetrygdType
+import no.nav.familie.kontrakter.ba.infotrygd.feed.BarnetrygdType
 import no.nav.familie.kontrakter.felles.objectMapper
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue

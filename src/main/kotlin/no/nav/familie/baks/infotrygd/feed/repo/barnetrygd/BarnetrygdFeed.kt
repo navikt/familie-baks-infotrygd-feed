@@ -1,5 +1,6 @@
 package no.nav.familie.baks.infotrygd.feed.repo.barnetrygd
 
+import no.nav.familie.kontrakter.ba.infotrygd.feed.BarnetrygdType
 import java.time.LocalDate
 import java.time.LocalDateTime
 import javax.persistence.Column
@@ -26,7 +27,7 @@ data class BarnetrygdFeed(
     val type: BarnetrygdType,
 
     @Column(name = "fnr_stonadsmottaker", nullable = true)
-    var fnrStonadsmottaker: String? = null,
+    var fnrStønadsmottaker: String? = null,
 
     @Column(name = "dato_start_ny_ba", nullable = true)
     var datoStartNyBa: LocalDate? = null,
@@ -43,11 +44,4 @@ data class BarnetrygdFeed(
 ) {
     override fun toString(): String =
         "BarnetrygdFeed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat)"
-}
-
-@Suppress("ktlint:enum-entry-name-case")
-enum class BarnetrygdType {
-    BA_Vedtak_v1,
-    BA_Foedsel_v1,
-    BA_StartBeh
 }
