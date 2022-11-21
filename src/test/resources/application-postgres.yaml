@@ -12,5 +12,4 @@ spring:
       ddl-auto: none
 
 AZURE_APP_WELL_KNOWN_URL: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration
-AZURE_APP_CLIENT_ID: testid
-AZURE_APP_CLIENT_SECRET: testsecret
+#AZURE_APP_CLIENT_SECRET: testsecret

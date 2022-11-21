@@ -1,6 +1,9 @@
 name: Build-Deploy-Preprod
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - 'main'
 env:
   IMAGE: ghcr.io/navikt/familie-baks-infotrygd-feed:${{ github.sha }}
 jobs:

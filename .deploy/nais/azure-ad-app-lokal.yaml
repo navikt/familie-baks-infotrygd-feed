@@ -1,0 +1,33 @@
+#######
+# Denne er brukt til å gjøre det mulig å bruke tokens lokalt
+#
+# secret kan hentes fra cluster med "kubectl -n teamfamilie get secret azuread-familie-baks-infotrygd-feed-lokal -o json | jq '.data | map_values(@base64d)'"
+#
+# Kjøres en gang eller ved endringer med
+# kubectl apply -f .deploy/nais/azure-ad-app-lokal.yaml
+###
+apiVersion: nais.io/v1
+kind: AzureAdApplication
+metadata:
+  name: familie-baks-infotrygd-feed-lokal
+  namespace: teamfamilie
+  labels:
+    team: teamfamilie
+spec:
+  preAuthorizedApplications:
+    - application: familie-ba-sak-lokal
+      cluster: dev-fss
+    - application: familie-ba-sak-lokal
+      cluster: dev-gcp
+      namespace: teamfamilie
+    - application: ida
+      cluster: prod-fss
+      namespace: traktor
+    - application: infotrygd-feed-konsument
+      namespace: infotrygd
+      cluster: dev-fss
+  replyUrls:
+    - url: "http://localhost:8094/swagger-ui/oauth2-redirect.html"
+  tenant: trygdeetaten.no
+  secretName: azuread-familie-baks-infotrygd-feed-lokal
+  singlePageApplication: true

@@ -43,6 +43,10 @@ spec:
       claims:
         extra:
           - "NAVident"
+      tenant: trygdeetaten.no
+      replyURLs:
+        - "https://familie-baks-infotrygd-feed.dev.intern.nav.no/swagger-ui/oauth2-redirect.html"
+      singlePageApplication: true
   accessPolicy:
     inbound:
       rules:
