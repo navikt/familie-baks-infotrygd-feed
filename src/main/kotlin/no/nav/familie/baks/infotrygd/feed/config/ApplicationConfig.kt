@@ -19,7 +19,7 @@ class ApplicationConfig {
 
     @Bean
     fun logFilter(): FilterRegistrationBean<LogFilter> {
-        log.info("Registering LogFilter filter")
+        logger.info("Registering LogFilter filter")
         return FilterRegistrationBean<LogFilter>().apply {
             filter = LogFilter()
             order = 1
@@ -27,7 +27,7 @@ class ApplicationConfig {
     }
 
     companion object {
-        private val log = LoggerFactory.getLogger(ApplicationConfig::class.java)
+        private val logger = LoggerFactory.getLogger(ApplicationConfig::class.java)
         const val pakkenavn = "no.nav.familie.baks.infotrygd.feed"
     }
 }
