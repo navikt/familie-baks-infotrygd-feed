@@ -11,6 +11,10 @@ import no.nav.familie.baks.infotrygd.feed.repo.kontantstøtte.KontantstøtteFeed
 import no.nav.familie.kontrakter.ba.infotrygd.feed.BarnetrygdType
 import no.nav.familie.kontrakter.ks.infotrygd.feed.KontantstøtteType
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -22,10 +26,6 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.time.LocalDate
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.InnholdStartBehandling as KontantstøtteInnholdStartBehandling
 import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.InnholdVedtak as KontantstøtteInnholdVedtak
 
@@ -34,7 +34,7 @@ import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.InnholdVedtak a
 @ContextConfiguration(initializers = [DbContainerInitializer::class])
 @ActiveProfiles("integrasjonstest")
 @Tag("integration")
-class InfotrygdServiceTest {
+class InfotrygdFeedServiceTest {
 
     @Autowired
     private lateinit var infotrygdFeedService: InfotrygdFeedService
