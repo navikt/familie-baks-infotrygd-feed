@@ -10,8 +10,6 @@ import org.springframework.kafka.listener.MessageListenerContainer
 import org.springframework.stereotype.Component
 import java.time.Duration
 import java.util.concurrent.Executor
-import java.util.concurrent.atomic.AtomicInteger
-import java.util.concurrent.atomic.AtomicLong
 
 @Component
 class KafkaErrorHandler : CommonContainerStoppingErrorHandler() {
@@ -20,22 +18,22 @@ class KafkaErrorHandler : CommonContainerStoppingErrorHandler() {
     val secureLogger: Logger = LoggerFactory.getLogger("secureLogger")
 
     private val executor: Executor
-    private val teller = AtomicInteger(0)
-    private val sisteFeil = AtomicLong(0)
 
     override fun handleRemaining(
         e: Exception,
-        records: List<ConsumerRecord<*, *>>,
+        records: MutableList<ConsumerRecord<*, *>>,
         consumer: Consumer<*, *>,
         container: MessageListenerContainer
     ) {
+        Thread.sleep(1000)
+
         if (records.isEmpty()) {
             logger.error("Feil ved konsumering av melding. Ingen records. ${consumer.subscription()}", e)
             scheduleRestart(e, records, consumer, container, "Ukjent topic")
         } else {
             records.first().run {
                 logger.error(
-                    "Feil ved konsumering av melding fra ${this.topic()}. id: ${this.key()}, " +
+                    "Feil ved konsumering av melding fra ${this.topic()}. id ${this.key()}, " +
                         "offset: ${this.offset()}, partition: ${this.partition()}"
                 )
                 secureLogger.error("${this.topic()} - Problemer med prosessering av $records", e)
@@ -51,36 +49,22 @@ class KafkaErrorHandler : CommonContainerStoppingErrorHandler() {
         container: MessageListenerContainer,
         topic: String
     ) {
-        val now = System.currentTimeMillis()
-        if (now - sisteFeil.getAndSet(now) > COUNTER_RESET_TID) {
-            teller.set(0)
-        }
-        val numErrors = teller.incrementAndGet()
-        val stopTime = if (numErrors > MAKS_ANTALL_FEIL) MAKS_STOP_TID else MIN_STOP_TID * numErrors
         executor.execute {
             try {
-                Thread.sleep(stopTime)
+                Thread.sleep(SHORT)
                 logger.warn("Starter kafka container for $topic")
                 container.start()
             } catch (exception: Exception) {
                 logger.error("Feil oppstod ved venting og oppstart av kafka container", exception)
             }
         }
-        logger.warn("Stopper kafka container for $topic i ${Duration.ofMillis(stopTime)}")
-        super.handleRemaining(
-            Exception("Sjekk securelogs for mer info - ${e::class.java.simpleName}"),
-            records,
-            consumer,
-            container
-        )
+        logger.warn("Stopper kafka container for $topic i ${Duration.ofMillis(SHORT)}")
+        super.handleRemaining(e, records, consumer, container)
     }
 
     companion object {
 
-        private val MAKS_STOP_TID = Duration.ofHours(3).toMillis()
-        private val MIN_STOP_TID = Duration.ofSeconds(20).toMillis()
-        private const val MAKS_ANTALL_FEIL = 10
-        private val COUNTER_RESET_TID = MIN_STOP_TID * MAKS_ANTALL_FEIL * 2
+        private val SHORT = Duration.ofSeconds(10).toMillis()
     }
 
     init {

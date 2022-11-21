@@ -44,8 +44,8 @@ class KafkaConfig(
         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaBrokers,
         ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
         ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
-        ConsumerConfig.GROUP_ID_CONFIG to "familie-tilbake",
-        ConsumerConfig.CLIENT_ID_CONFIG to "consumer-familie-tilbake-1",
+        ConsumerConfig.GROUP_ID_CONFIG to "familie-baks-infotrygd-feed",
+        ConsumerConfig.CLIENT_ID_CONFIG to "consumer-familie-baks-infotrygd-feed-1",
         ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
         CommonClientConfigs.RETRIES_CONFIG to 10,
         CommonClientConfigs.RETRY_BACKOFF_MS_CONFIG to 100

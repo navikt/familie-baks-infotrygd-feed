@@ -30,7 +30,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
     private var kontantstøtteLatch: CountDownLatch = CountDownLatch(1)
 
     @KafkaListener(
-        id = "familie-ba-sak-feed",
+        id = "feed-ba-consumer-1",
         topics = [KafkaConfig.BARNETRYGD_FEED_TOPIC],
         containerFactory = "concurrentKafkaListenerContainerFactory"
     )
@@ -69,7 +69,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
     }
 
     @KafkaListener(
-        id = "familie-ks-sak-feed",
+        id = "feed-ks-consumer-1",
         topics = [KafkaConfig.KONTANTSTØTTE_FEED_TOPIC],
         containerFactory = "concurrentKafkaListenerContainerFactory"
     )
