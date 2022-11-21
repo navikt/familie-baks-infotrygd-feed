@@ -16,6 +16,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.support.Acknowledgment
 import org.springframework.stereotype.Service
+import java.util.UUID
 import java.util.concurrent.CountDownLatch
 
 @Service
@@ -31,6 +32,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
 
     @KafkaListener(
         id = "feed-ba-consumer-1",
+        groupId = "feed-ba-consumer-1",
         topics = [KafkaConfig.BARNETRYGD_FEED_TOPIC],
         containerFactory = "concurrentKafkaListenerContainerFactory"
     )
@@ -46,6 +48,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
             BarnetrygdType.BA_Vedtak_v1 -> {
                 val vedtakDto = request as VedtakDto
                 infotrygdFeedService.opprettBarnetrygdFeed(
+                    key = UUID.fromString(key),
                     type = request.type,
                     datoStartNyBA = vedtakDto.datoStartNyBa,
                     fnrStonadsmottaker = vedtakDto.fnrStoenadsmottaker
@@ -53,11 +56,16 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
             }
             BarnetrygdType.BA_Foedsel_v1 -> {
                 val fødselsDto = request as FødselsDto
-                infotrygdFeedService.opprettBarnetrygdFeed(type = request.type, fnrBarn = fødselsDto.fnrBarn)
+                infotrygdFeedService.opprettBarnetrygdFeed(
+                    key = UUID.fromString(key),
+                    type = request.type,
+                    fnrBarn = fødselsDto.fnrBarn
+                )
             }
             BarnetrygdType.BA_StartBeh -> {
                 val startBehandlingDto = request as StartBehandlingDto
                 infotrygdFeedService.opprettBarnetrygdFeed(
+                    key = UUID.fromString(key),
                     type = request.type,
                     fnrStonadsmottaker = startBehandlingDto.fnrStoenadsmottaker
                 )
@@ -70,6 +78,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
 
     @KafkaListener(
         id = "feed-ks-consumer-1",
+        groupId = "feed-ks-consumer-1",
         topics = [KafkaConfig.KONTANTSTØTTE_FEED_TOPIC],
         containerFactory = "concurrentKafkaListenerContainerFactory"
     )
@@ -85,6 +94,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
             KontantstøtteType.KS_Vedtak -> {
                 val vedtakDto = request as no.nav.familie.kontrakter.ks.infotrygd.feed.VedtakDto
                 infotrygdFeedService.opprettKontantstøtteFeed(
+                    key = UUID.fromString(key),
                     type = request.type,
                     datoStartNyKS = vedtakDto.datoStartNyKS,
                     fnrStonadsmottaker = vedtakDto.fnrStoenadsmottaker
@@ -93,6 +103,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
             KontantstøtteType.KS_StartBeh -> {
                 val startBehandlingDto = request as no.nav.familie.kontrakter.ks.infotrygd.feed.StartBehandlingDto
                 infotrygdFeedService.opprettKontantstøtteFeed(
+                    key = UUID.fromString(key),
                     type = request.type,
                     fnrStonadsmottaker = startBehandlingDto.fnrStoenadsmottaker
                 )
