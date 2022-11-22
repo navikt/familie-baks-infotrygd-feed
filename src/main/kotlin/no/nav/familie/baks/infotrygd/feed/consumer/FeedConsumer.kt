@@ -46,7 +46,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
         val request: BarnetrygdFeedDto = objectMapper.readValue(data, BarnetrygdFeedDto::class.java)
         when (request.type) {
             BarnetrygdType.BA_Vedtak_v1 -> {
-                val vedtakDto = request as VedtakDto
+                val vedtakDto = objectMapper.readValue(data, VedtakDto::class.java)
                 infotrygdFeedService.opprettBarnetrygdFeed(
                     key = UUID.fromString(key),
                     type = request.type,
@@ -55,7 +55,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
                 )
             }
             BarnetrygdType.BA_Foedsel_v1 -> {
-                val fødselsDto = request as FødselsDto
+                val fødselsDto = objectMapper.readValue(data, FødselsDto::class.java)
                 infotrygdFeedService.opprettBarnetrygdFeed(
                     key = UUID.fromString(key),
                     type = request.type,
@@ -63,7 +63,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
                 )
             }
             BarnetrygdType.BA_StartBeh -> {
-                val startBehandlingDto = request as StartBehandlingDto
+                val startBehandlingDto = objectMapper.readValue(data, StartBehandlingDto::class.java)
                 infotrygdFeedService.opprettBarnetrygdFeed(
                     key = UUID.fromString(key),
                     type = request.type,
@@ -92,7 +92,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
         val request: KontantstøtteFeedDto = objectMapper.readValue(data, KontantstøtteFeedDto::class.java)
         when (request.type) {
             KontantstøtteType.KS_Vedtak -> {
-                val vedtakDto = request as no.nav.familie.kontrakter.ks.infotrygd.feed.VedtakDto
+                val vedtakDto = objectMapper.readValue(data, no.nav.familie.kontrakter.ks.infotrygd.feed.VedtakDto::class.java)
                 infotrygdFeedService.opprettKontantstøtteFeed(
                     key = UUID.fromString(key),
                     type = request.type,
@@ -101,7 +101,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
                 )
             }
             KontantstøtteType.KS_StartBeh -> {
-                val startBehandlingDto = request as no.nav.familie.kontrakter.ks.infotrygd.feed.StartBehandlingDto
+                val startBehandlingDto = objectMapper.readValue(data, no.nav.familie.kontrakter.ks.infotrygd.feed.StartBehandlingDto::class.java)
                 infotrygdFeedService.opprettKontantstøtteFeed(
                     key = UUID.fromString(key),
                     type = request.type,
