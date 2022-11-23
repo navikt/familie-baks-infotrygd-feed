@@ -6,14 +6,14 @@ metadata:
   labels:
     team: teamfamilie
 spec:
-  pool: nav-dev
+  pool: nav-prod
   config: # optional; all fields are optional too; defaults shown
     cleanupPolicy: delete  # delete, compact
     minimumInSyncReplicas: 2
     partitions: 1
     replication: 3  # see min/max requirements
     retentionBytes: -1  # -1 means unlimited
-    retentionHours: 168 # -1 means unlimited
+    retentionHours: 1440 # -1 means unlimited
   acl:
     - team: teamfamilie
       application: familie-baks-infotrygd-feed #owner
