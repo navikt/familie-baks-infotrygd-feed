@@ -26,6 +26,9 @@ spec:
     - application: infotrygd-feed-konsument
       namespace: infotrygd
       cluster: dev-fss
+  claims:
+    groups:
+      - id: "c62e908a-cf20-4ad0-b7b3-3ff6ca4bf38b"  #teamfamilie-forvaltning
   replyUrls:
     - url: "http://localhost:8094/swagger-ui/oauth2-redirect.html"
   tenant: trygdeetaten.no

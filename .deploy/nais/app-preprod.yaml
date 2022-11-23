@@ -39,10 +39,12 @@ spec:
   azure:
     application:
       enabled: true
-      allowAllUsers: true
+      allowAllUsers: false
       claims:
         extra:
           - "NAVident"
+        groups:
+          - id: "c62e908a-cf20-4ad0-b7b3-3ff6ca4bf38b" # teamfamilie-forvaltning
       tenant: trygdeetaten.no
       replyURLs:
         - "https://familie-baks-infotrygd-feed.dev.intern.nav.no/swagger-ui/oauth2-redirect.html"
