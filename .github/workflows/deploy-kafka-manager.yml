@@ -14,3 +14,9 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .deploy/nais/kafka-manager/preprod/familie-baks-infotrygd-feed-kafka-manager.yml
+      - name: Deploy familie-baks-infotrygd-feed-kafka-manager til prod
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .deploy/nais/kafka-manager/prod/familie-baks-infotrygd-feed-kafka-manager.yml
