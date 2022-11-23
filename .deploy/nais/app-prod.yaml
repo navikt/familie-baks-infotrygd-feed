@@ -1,0 +1,84 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: familie-baks-infotrygd-feed
+  namespace: teamfamilie
+  labels:
+    team: teamfamilie
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-next-upstream-tries: '1'
+spec:
+  image: {{image}}
+  port: 8094
+  leaderElection: true
+  liveness:
+    path: /internal/health/liveness
+    initialDelay: 20
+    failureThreshold: 10
+  readiness:
+    path: /internal/health/readyness
+    initialDelay: 20
+    failureThreshold: 10
+  prometheus:
+    enabled: true
+    path: /internal/prometheus
+  vault:
+    enabled: false
+  gcp: # Database
+    sqlInstances:
+      - type: POSTGRES_14 # IF This is changed, all data will be lost. Read on nais.io how to upgrade
+        tier: db-custom-1-3840
+        name: familie-baks-infotrygd-feed
+        autoBackupTime: "02:00"
+        pointInTimeRecovery: true
+        diskAutoresize: true
+        highAvailability: true
+        databases:
+          - name: familie-baks-infotrygd-feed
+            envVarPrefix: DB
+  azure:
+    application:
+      enabled: true
+      allowAllUsers: false
+      claims:
+        extra:
+          - "NAVident"
+        groups:
+          - id: "3d718ae5-f25e-47a4-b4b3-084a97604c1d" # teamfamilie-forvaltning
+      replyURLs:
+        - "https://familie-baks-infotrygd-feed.intern.nav.no/swagger-ui/oauth2-redirect.html"
+      singlePageApplication: true
+  accessPolicy:
+    inbound:
+      rules:
+        - application: familie-ks-sak
+          cluster: prod-gcp
+        - application: ida
+          namespace: traktor
+          cluster: prod-fss
+        - application: infotrygd-feed-konsument
+          namespace: infotrygd
+          cluster: prod-fss
+  replicas:
+    min: 1
+    max: 1
+    cpuThresholdPercentage: 50
+  resources:
+    limits:
+      memory: 1024Mi
+      cpu: "1"
+    requests:
+      memory: 512Mi
+      cpu: 500m
+  ingresses:
+    - https://familie-baks-infotrygd-feed.intern.nav.no
+  secureLogs:
+    enabled: true
+  env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: prod
+
+    - name: JAVA_OPTS
+      value: "-XX:MinRAMPercentage=25.0 -XX:MaxRAMPercentage=75.0 -XX:+HeapDumpOnOutOfMemoryError"
+  kafka:
+    pool: nav-prod
