@@ -86,7 +86,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
         val data: String = consumerRecord.value()
         val key: String = consumerRecord.key()
 
-        logger.info("Feed hendelse for \"Kontantstøtte\" er mottatt i kafka $consumerRecord for behandlingId $key")
+        logger.info("Feed hendelse for \"Kontantstøtte\" er mottatt i kafka for behandlingId $key")
         secureLogger.info("Feed hendelse for \"Kontantstøtte\" er mottatt i kafka $consumerRecord for behandlingId $key")
 
         val request: KontantstøtteFeedDto = objectMapper.readValue(data, KontantstøtteFeedDto::class.java)
