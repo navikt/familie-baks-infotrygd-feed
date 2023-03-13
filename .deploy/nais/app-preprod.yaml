@@ -47,7 +47,7 @@ spec:
           - id: "c62e908a-cf20-4ad0-b7b3-3ff6ca4bf38b" # teamfamilie-forvaltning
       tenant: trygdeetaten.no
       replyURLs:
-        - "https://familie-baks-infotrygd-feed.dev.intern.nav.no/swagger-ui/oauth2-redirect.html"
+        - "https://familie-baks-infotrygd-feed.intern.dev.nav.no/swagger-ui/oauth2-redirect.html"
       singlePageApplication: true
   accessPolicy:
     inbound:
@@ -73,7 +73,7 @@ spec:
       memory: 512Mi
       cpu: 500m
   ingresses:
-    - https://familie-baks-infotrygd-feed.dev.intern.nav.no
+    - https://familie-baks-infotrygd-feed.intern.dev.nav.no
   secureLogs:
     enabled: true
   env:
