@@ -12,13 +12,13 @@ interface BarnetrygdFeedRepository : JpaRepository<BarnetrygdFeed, Long> {
     @Query(
         """ SELECT f FROM BarnetrygdFeed f 
                 WHERE f.sekvensId > :sistLesteSekvensId AND f.duplikat = false 
-                ORDER BY f.sekvensId asc """
+                ORDER BY f.sekvensId asc """,
     )
     fun finnMeldingerMedSekvensIdStørreEnn(pageable: Pageable, sistLesteSekvensId: Long): List<BarnetrygdFeed>
 
     @Query(
         """ SELECT CASE WHEN COUNT(f) > 0 THEN true ELSE false end FROM BarnetrygdFeed f 
-                    WHERE f.type = :type AND f.fnrBarn = :fnrBarn """
+                    WHERE f.type = :type AND f.fnrBarn = :fnrBarn """,
     )
     fun erDuplikatFoedselsmelding(type: BarnetrygdType, fnrBarn: String): Boolean
 

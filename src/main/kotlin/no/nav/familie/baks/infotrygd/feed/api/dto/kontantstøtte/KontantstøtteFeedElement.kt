@@ -9,5 +9,5 @@ data class KontantstøtteFeedElement(
     val innhold: Innhold,
     val metadata: ElementMetadata,
     val sekvensId: Int,
-    val type: KontantstøtteType
+    val type: KontantstøtteType,
 ) : FeedElement

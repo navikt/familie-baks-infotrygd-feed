@@ -21,7 +21,7 @@ class KafkaConfig(
     @Value("\${KAFKA_BROKERS:localhost}") private val kafkaBrokers: String,
     @Value("\${KAFKA_TRUSTSTORE_PATH}") private val kafkaTruststorePath: String,
     @Value("\${KAFKA_CREDSTORE_PASSWORD}") private val kafkaCredstorePassword: String,
-    @Value("\${KAFKA_KEYSTORE_PATH}") private val kafkaKeystorePath: String
+    @Value("\${KAFKA_KEYSTORE_PATH}") private val kafkaKeystorePath: String,
 ) {
 
     @Bean
@@ -31,7 +31,7 @@ class KafkaConfig(
 
     @Bean
     fun concurrentKafkaListenerContainerFactory(
-        kafkaErrorHandler: KafkaErrorHandler
+        kafkaErrorHandler: KafkaErrorHandler,
     ): ConcurrentKafkaListenerContainerFactory<String, String> =
         ConcurrentKafkaListenerContainerFactory<String, String>().apply {
             setConcurrency(1)
@@ -47,7 +47,7 @@ class KafkaConfig(
         ConsumerConfig.CLIENT_ID_CONFIG to "consumer-familie-baks-infotrygd-feed-1",
         ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest",
         CommonClientConfigs.RETRIES_CONFIG to 10,
-        CommonClientConfigs.RETRY_BACKOFF_MS_CONFIG to 100
+        CommonClientConfigs.RETRY_BACKOFF_MS_CONFIG to 100,
     ) + securityConfig()
 
     private fun securityConfig() =
@@ -60,7 +60,7 @@ class KafkaConfig(
             SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG to kafkaCredstorePassword,
             SslConfigs.SSL_KEYSTORE_LOCATION_CONFIG to kafkaKeystorePath,
             SslConfigs.SSL_KEYSTORE_PASSWORD_CONFIG to kafkaCredstorePassword,
-            SslConfigs.SSL_KEY_PASSWORD_CONFIG to kafkaCredstorePassword
+            SslConfigs.SSL_KEY_PASSWORD_CONFIG to kafkaCredstorePassword,
         )
 
     companion object {

@@ -9,5 +9,5 @@ data class BarnetrygdFeedElement(
     val innhold: Innhold,
     val metadata: ElementMetadata,
     val sekvensId: Int,
-    val type: BarnetrygdType
+    val type: BarnetrygdType,
 ) : FeedElement

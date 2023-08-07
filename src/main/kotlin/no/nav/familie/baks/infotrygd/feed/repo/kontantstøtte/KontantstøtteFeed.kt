@@ -33,7 +33,7 @@ data class KontantstøtteFeed(
     var datoStartNyKS: LocalDate,
 
     @Column(name = "opprettet_dato", nullable = true)
-    var opprettetDato: LocalDateTime
+    var opprettetDato: LocalDateTime,
 
 ) {
     override fun toString(): String =

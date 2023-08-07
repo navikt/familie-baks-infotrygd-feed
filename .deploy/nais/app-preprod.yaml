@@ -60,6 +60,9 @@ spec:
         - application: infotrygd-feed-proxy
           namespace: teamfamilie
           cluster: dev-fss
+        - application: infotrygd-feed-proxy-v2
+          namespace: infotrygd
+          cluster: dev-fss
 
   replicas:
     min: 1
