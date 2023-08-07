@@ -101,7 +101,7 @@ class InfotrygdFeedServiceTest {
                 key = key,
                 type = BarnetrygdType.BA_Vedtak_v1,
                 datoStartNyBA = datoStartNyBA,
-                fnrStonadsmottaker = fnrStønadsmottaker
+                fnrStonadsmottaker = fnrStønadsmottaker,
             )
         }
 
@@ -127,7 +127,7 @@ class InfotrygdFeedServiceTest {
             infotrygdFeedService.opprettBarnetrygdFeed(
                 key = key,
                 type = BarnetrygdType.BA_StartBeh,
-                fnrStonadsmottaker = fnrStønadsmottaker
+                fnrStonadsmottaker = fnrStønadsmottaker,
             )
         }
 
@@ -154,7 +154,7 @@ class InfotrygdFeedServiceTest {
                 key = key,
                 type = KontantstøtteType.KS_Vedtak,
                 datoStartNyKS = datoStartNyKS,
-                fnrStonadsmottaker = fnrStønadsmottaker
+                fnrStonadsmottaker = fnrStønadsmottaker,
             )
         }
 
@@ -180,7 +180,7 @@ class InfotrygdFeedServiceTest {
             infotrygdFeedService.opprettKontantstøtteFeed(
                 key = key,
                 type = KontantstøtteType.KS_StartBeh,
-                fnrStonadsmottaker = fnrStønadsmottaker
+                fnrStonadsmottaker = fnrStønadsmottaker,
             )
         }
 

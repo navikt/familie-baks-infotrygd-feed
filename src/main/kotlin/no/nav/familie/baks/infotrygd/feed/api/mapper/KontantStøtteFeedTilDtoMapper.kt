@@ -22,7 +22,7 @@ fun konverterTilFeedMeldingDto(feedListe: List<KontantstøtteFeed>): FeedMelding
                     }
                 },
                 sekvensId = it.sekvensId.toInt(),
-                type = it.type
+                type = it.type,
             )
-        }
+        },
     )
