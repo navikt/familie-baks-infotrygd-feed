@@ -9,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException
 @Service
 class TilgangskontrollService(
     private val tokenValidationContextHolder: TokenValidationContextHolder,
-    @Value("\${TEAMFAMILIE_FORVALTNING_GROUP_ID}") private val forvalterGroupId: String
+    @Value("\${TEAMFAMILIE_FORVALTNING_GROUP_ID}") private val forvalterGroupId: String,
 ) {
 
     fun sjekkTilgang() {

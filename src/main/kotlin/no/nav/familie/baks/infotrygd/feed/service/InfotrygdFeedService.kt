@@ -22,23 +22,23 @@ import java.util.UUID
 class InfotrygdFeedService(
     private val barnetrygdFeedRepository: BarnetrygdFeedRepository,
     private val kontantstøtteFeedRepository: KontantstøtteFeedRepository,
-    private val feedLoggRepository: FeedLoggRepository
+    private val feedLoggRepository: FeedLoggRepository,
 ) {
 
     fun hentBarnetrygdMeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): FeedMeldingDto =
         konverterTilFeedMeldingDto(
             barnetrygdFeedRepository.finnMeldingerMedSekvensIdStørreEnn(
                 pageable = PageRequest.of(0, maxSize),
-                sistLesteSekvensId = sistLestSekvensId
-            )
+                sistLesteSekvensId = sistLestSekvensId,
+            ),
         )
 
     fun hentKontantStøtteMeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): FeedMeldingDto =
         konverterTilFeedMeldingDto(
             kontantstøtteFeedRepository.finnMeldingerMedSekvensIdStørreEnn(
                 pageable = PageRequest.of(0, maxSize),
-                sistLesteSekvensId = sistLestSekvensId
-            )
+                sistLesteSekvensId = sistLestSekvensId,
+            ),
         )
 
     @Transactional
@@ -47,7 +47,7 @@ class InfotrygdFeedService(
         type: BarnetrygdType,
         fnrBarn: String? = null,
         fnrStonadsmottaker: String? = null,
-        datoStartNyBA: LocalDate? = null
+        datoStartNyBA: LocalDate? = null,
     ) {
         val gjeldendeFnr = fnrBarn ?: fnrStonadsmottaker
             ?: error("Både fnrBarn og fnrStonadsmottaker kan ikke være null")
@@ -66,8 +66,8 @@ class InfotrygdFeedService(
                 fnrStønadsmottaker = fnrStonadsmottaker,
                 datoStartNyBa = datoStartNyBA,
                 duplikat = erDuplikat,
-                opprettetDato = LocalDateTime.now()
-            )
+                opprettetDato = LocalDateTime.now(),
+            ),
         )
         loggFeed(key, type.name, gjeldendeFnr)
     }
@@ -77,7 +77,7 @@ class InfotrygdFeedService(
         key: UUID,
         type: KontantstøtteType,
         fnrStonadsmottaker: String,
-        datoStartNyKS: LocalDate = LocalDate.now()
+        datoStartNyKS: LocalDate = LocalDate.now(),
     ) {
         if (feedLoggRepository.existsByLoggIdAndTypeAndGjeldendeFnr(loggId = key, type = type.name, gjeldendeFnr = fnrStonadsmottaker)) {
             return
@@ -88,8 +88,8 @@ class InfotrygdFeedService(
                 type = type,
                 fnrStønadsmottaker = fnrStonadsmottaker,
                 datoStartNyKS = datoStartNyKS,
-                opprettetDato = LocalDateTime.now()
-            )
+                opprettetDato = LocalDateTime.now(),
+            ),
         )
         loggFeed(key, type.name, fnrStonadsmottaker)
     }

@@ -25,7 +25,7 @@ class FeedLogg(
     val gjeldendeFnr: String,
 
     @Column(name = "opprettet_dato", nullable = false)
-    val opprettetDato: LocalDateTime = LocalDateTime.now()
+    val opprettetDato: LocalDateTime = LocalDateTime.now(),
 ) {
     init {
         if (BarnetrygdType.values().none { it.name == type } && KontantstøtteType.values().none { it.name == type }) {

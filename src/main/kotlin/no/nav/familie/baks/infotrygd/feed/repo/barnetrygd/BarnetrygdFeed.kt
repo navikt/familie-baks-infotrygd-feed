@@ -39,7 +39,7 @@ data class BarnetrygdFeed(
     var duplikat: Boolean? = false,
 
     @Column(name = "opprettet_dato", nullable = true)
-    var opprettetDato: LocalDateTime
+    var opprettetDato: LocalDateTime,
 
 ) {
     override fun toString(): String =
