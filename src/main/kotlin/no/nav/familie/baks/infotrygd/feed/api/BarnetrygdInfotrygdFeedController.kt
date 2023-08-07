@@ -19,18 +19,18 @@ import org.springframework.web.bind.annotation.RestController
 @ProtectedWithClaims(issuer = "azuread")
 class BarnetrygdInfotrygdFeedController(
     private val infotrygdFeedService: InfotrygdFeedService,
-    private val tilgangskontrollService: TilgangskontrollService
+    private val tilgangskontrollService: TilgangskontrollService,
 ) {
 
     @Operation(
         summary = "Hent liste med hendelser.",
-        description = "Henter hendelser med sekvensId større enn sistLesteSekvensId."
+        description = "Henter hendelser med sekvensId større enn sistLesteSekvensId.",
     )
     @GetMapping("/v1/feed", produces = ["application/json; charset=us-ascii"])
     fun hentFeed(
         @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
         @RequestParam("sistLesteSekvensId")
-        sekvensnummer: Long
+        sekvensnummer: Long,
     ): ResponseEntity<FeedMeldingDto> {
         tilgangskontrollService.sjekkTilgang()
 
@@ -44,7 +44,7 @@ class BarnetrygdInfotrygdFeedController(
             onFailure = {
                 logger.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            }
+            },
         )
     }
 

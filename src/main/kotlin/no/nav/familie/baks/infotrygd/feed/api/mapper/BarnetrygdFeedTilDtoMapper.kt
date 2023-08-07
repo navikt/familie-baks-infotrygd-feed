@@ -17,7 +17,7 @@ fun konverterTilFeedMeldingDto(feedListe: List<BarnetrygdFeed>): FeedMeldingDto 
                     BarnetrygdType.BA_Vedtak_v1 -> {
                         InnholdVedtak(
                             datoStartNyBA = checkNotNull(it.datoStartNyBa),
-                            fnrStoenadsmottaker = checkNotNull(it.fnrStønadsmottaker)
+                            fnrStoenadsmottaker = checkNotNull(it.fnrStønadsmottaker),
                         )
                     }
                     BarnetrygdType.BA_StartBeh -> {
@@ -28,7 +28,7 @@ fun konverterTilFeedMeldingDto(feedListe: List<BarnetrygdFeed>): FeedMeldingDto 
                     }
                 },
                 sekvensId = it.sekvensId.toInt(),
-                type = it.type
+                type = it.type,
             )
-        }
+        },
     )

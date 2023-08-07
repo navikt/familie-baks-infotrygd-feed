@@ -53,9 +53,9 @@ class KontantstøtteSchemaValidatorTest {
                     innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
                     metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                     sekvensId = 42,
-                    type = KontantstøtteType.KS_Vedtak
-                )
-            )
+                    type = KontantstøtteType.KS_Vedtak,
+                ),
+            ),
         )
     }
 
@@ -68,9 +68,9 @@ class KontantstøtteSchemaValidatorTest {
                     innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
                     metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                     sekvensId = 42,
-                    type = KontantstøtteType.KS_StartBeh
-                )
-            )
+                    type = KontantstøtteType.KS_StartBeh,
+                ),
+            ),
         )
     }
 
@@ -87,8 +87,8 @@ class KontantstøtteSchemaValidatorTest {
                     listOf(
                         NonValidationKeyword("\$schema"),
                         NonValidationKeyword("\$id"),
-                        NonValidationKeyword("examples")
-                    )
+                        NonValidationKeyword("examples"),
+                    ),
                 )
                 .build()
 

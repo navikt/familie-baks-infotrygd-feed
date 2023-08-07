@@ -23,7 +23,7 @@ class KafkaErrorHandler : CommonContainerStoppingErrorHandler() {
         e: Exception,
         records: MutableList<ConsumerRecord<*, *>>,
         consumer: Consumer<*, *>,
-        container: MessageListenerContainer
+        container: MessageListenerContainer,
     ) {
         Thread.sleep(1000)
 
@@ -34,7 +34,7 @@ class KafkaErrorHandler : CommonContainerStoppingErrorHandler() {
             records.first().run {
                 logger.error(
                     "Feil ved konsumering av melding fra ${this.topic()}. id ${this.key()}, " +
-                        "offset: ${this.offset()}, partition: ${this.partition()}"
+                        "offset: ${this.offset()}, partition: ${this.partition()}",
                 )
                 secureLogger.error("${this.topic()} - Problemer med prosessering av $records", e)
                 scheduleRestart(e, records, consumer, container, this.topic())
@@ -47,7 +47,7 @@ class KafkaErrorHandler : CommonContainerStoppingErrorHandler() {
         records: List<ConsumerRecord<*, *>>,
         consumer: Consumer<*, *>,
         container: MessageListenerContainer,
-        topic: String
+        topic: String,
     ) {
         executor.execute {
             try {
