@@ -68,9 +68,9 @@ class BarnetrygdSchemaValidatorTest {
                     InnholdFødsel(fnrBarn = fnr),
                     metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                     sekvensId = 42,
-                    type = BarnetrygdType.BA_Foedsel_v1
-                )
-            )
+                    type = BarnetrygdType.BA_Foedsel_v1,
+                ),
+            ),
         )
     }
 
@@ -83,9 +83,9 @@ class BarnetrygdSchemaValidatorTest {
                     innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
                     metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                     sekvensId = 42,
-                    type = BarnetrygdType.BA_Vedtak_v1
-                )
-            )
+                    type = BarnetrygdType.BA_Vedtak_v1,
+                ),
+            ),
         )
     }
 
@@ -98,9 +98,9 @@ class BarnetrygdSchemaValidatorTest {
                     innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
                     metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                     sekvensId = 42,
-                    type = BarnetrygdType.BA_StartBeh
-                )
-            )
+                    type = BarnetrygdType.BA_StartBeh,
+                ),
+            ),
         )
     }
 
@@ -117,8 +117,8 @@ class BarnetrygdSchemaValidatorTest {
                     listOf(
                         NonValidationKeyword("\$schema"),
                         NonValidationKeyword("\$id"),
-                        NonValidationKeyword("examples")
-                    )
+                        NonValidationKeyword("examples"),
+                    ),
                 )
                 .build()
 
