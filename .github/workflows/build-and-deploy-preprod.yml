@@ -1,8 +1,6 @@
 name: Build-Deploy-Preprod
 on:
   workflow_dispatch:
-env:
-  IMAGE: ghcr.io/navikt/familie-baks-infotrygd-feed:${{ github.sha }}
 jobs:
   deploy-to-dev:
     name: Bygg app/image, push til github, deploy til dev-gcp
