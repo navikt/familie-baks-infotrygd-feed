@@ -2,8 +2,6 @@ name: Pull request
 on:
   pull_request:
     types: [ opened, synchronize, reopened, ready_for_review ]
-env:
-  IMAGE: ghcr.io/navikt/familie-baks-infotrygd-feed:${{ github.sha }}
 jobs:
   avslutt-andre-workflows-samme-branch:
     name: Avslutt andre workflows på samme branch
