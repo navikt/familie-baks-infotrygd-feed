@@ -22,5 +22,5 @@ spec:
       application: familie-ks-sak
       access: write
     - team: teamfamilie
-      application: familie-baks-infotrygd-feed-kafka-manager
+      application: familie-baks-kafka-manager
       access: read
