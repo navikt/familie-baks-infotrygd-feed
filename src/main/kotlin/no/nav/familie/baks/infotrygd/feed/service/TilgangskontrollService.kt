@@ -11,14 +11,9 @@ class TilgangskontrollService(
     private val tokenValidationContextHolder: TokenValidationContextHolder,
     @Value("\${TEAMFAMILIE_FORVALTNING_GROUP_ID}") private val forvalterGroupId: String,
 ) {
-
     fun sjekkTilgang() {
-        val roles = tokenValidationContextHolder.tokenValidationContext.anyValidClaims.map {
-            it.getAsList("roles")
-        }.orElse(emptyList())
-        val groups = tokenValidationContextHolder.tokenValidationContext.anyValidClaims.map {
-            it.getAsList("groups")
-        }.orElse(emptyList())
+        val roles = tokenValidationContextHolder.getTokenValidationContext().anyValidClaims?.getAsList("roles") ?: emptyList()
+        val groups = tokenValidationContextHolder.getTokenValidationContext().anyValidClaims?.getAsList("groups") ?: emptyList()
 
         if (!roles.contains(ACCESS_AS_APPLICATION_ROLE) && !groups.contains(forvalterGroupId)) {
             throw ResponseStatusException(HttpStatus.FORBIDDEN, "User har ikke tilgang til å kalle tjenesten!")
