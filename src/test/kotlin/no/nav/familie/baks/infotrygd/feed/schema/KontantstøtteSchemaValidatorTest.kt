@@ -48,14 +48,14 @@ class KontantstøtteSchemaValidatorTest {
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
-            listOf(
-                KontantstøtteFeedElement(
-                    innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = KontantstøtteType.KS_Vedtak,
+                listOf(
+                    KontantstøtteFeedElement(
+                        innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = KontantstøtteType.KS_Vedtak,
+                    ),
                 ),
-            ),
         )
     }
 
@@ -64,14 +64,14 @@ class KontantstøtteSchemaValidatorTest {
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
-            listOf(
-                KontantstøtteFeedElement(
-                    innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = KontantstøtteType.KS_StartBeh,
+                listOf(
+                    KontantstøtteFeedElement(
+                        innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = KontantstøtteType.KS_StartBeh,
+                    ),
                 ),
-            ),
         )
     }
 
@@ -79,11 +79,11 @@ class KontantstøtteSchemaValidatorTest {
         get() {
             val schemaNode = objectMapper.readTree(hentFeedSchema())
 
-            val URI = "https://json-schema.org/draft-04/schema"
-            val ID = "\$id"
+            val uri = "https://json-schema.org/draft-04/schema"
+            val id = "\$id"
             val myJsonMetaSchema =
-                JsonMetaSchema.Builder(URI)
-                    .idKeyword(ID)
+                JsonMetaSchema.Builder(uri)
+                    .idKeyword(id)
                     .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4))
                     .keywords(
                         listOf(
@@ -94,7 +94,7 @@ class KontantstøtteSchemaValidatorTest {
                     )
                     .build()
 
-            return JsonSchemaFactory.Builder().defaultMetaSchemaIri(URI).metaSchema(myJsonMetaSchema).build()
+            return JsonSchemaFactory.Builder().defaultMetaSchemaIri(uri).metaSchema(myJsonMetaSchema).build()
                 .getSchema(schemaNode)
         }
 

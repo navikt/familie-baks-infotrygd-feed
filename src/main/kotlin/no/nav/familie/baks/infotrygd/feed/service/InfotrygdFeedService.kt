@@ -24,8 +24,10 @@ class InfotrygdFeedService(
     private val kontantstøtteFeedRepository: KontantstøtteFeedRepository,
     private val feedLoggRepository: FeedLoggRepository,
 ) {
-
-    fun hentBarnetrygdMeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): FeedMeldingDto =
+    fun hentBarnetrygdMeldingerFraFeed(
+        sistLestSekvensId: Long,
+        maxSize: Int = 100,
+    ): FeedMeldingDto =
         konverterTilFeedMeldingDto(
             barnetrygdFeedRepository.finnMeldingerMedSekvensIdStørreEnn(
                 pageable = PageRequest.of(0, maxSize),
@@ -33,7 +35,10 @@ class InfotrygdFeedService(
             ),
         )
 
-    fun hentKontantStøtteMeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): FeedMeldingDto =
+    fun hentKontantStøtteMeldingerFraFeed(
+        sistLestSekvensId: Long,
+        maxSize: Int = 100,
+    ): FeedMeldingDto =
         konverterTilFeedMeldingDto(
             kontantstøtteFeedRepository.finnMeldingerMedSekvensIdStørreEnn(
                 pageable = PageRequest.of(0, maxSize),
@@ -49,15 +54,17 @@ class InfotrygdFeedService(
         fnrStonadsmottaker: String? = null,
         datoStartNyBA: LocalDate? = null,
     ) {
-        val gjeldendeFnr = fnrBarn ?: fnrStonadsmottaker
-            ?: error("Både fnrBarn og fnrStonadsmottaker kan ikke være null")
+        val gjeldendeFnr =
+            fnrBarn ?: fnrStonadsmottaker
+                ?: error("Både fnrBarn og fnrStonadsmottaker kan ikke være null")
 
         if (feedLoggRepository.existsByLoggIdAndTypeAndGjeldendeFnr(loggId = key, type = type.name, gjeldendeFnr = gjeldendeFnr)) {
             return
         }
-        val erDuplikat = type.takeIf { it == BarnetrygdType.BA_Foedsel_v1 }
-            ?.let { barnetrygdFeedRepository.erDuplikatFoedselsmelding(type, fnrBarn!!) }
-            ?: false
+        val erDuplikat =
+            type.takeIf { it == BarnetrygdType.BA_Foedsel_v1 }
+                ?.let { barnetrygdFeedRepository.erDuplikatFoedselsmelding(type, fnrBarn!!) }
+                ?: false
 
         barnetrygdFeedRepository.save(
             BarnetrygdFeed(
@@ -94,7 +101,11 @@ class InfotrygdFeedService(
         loggFeed(key, type.name, fnrStonadsmottaker)
     }
 
-    private fun loggFeed(loggId: UUID, type: String, gjeldendeFnr: String) {
+    private fun loggFeed(
+        loggId: UUID,
+        type: String,
+        gjeldendeFnr: String,
+    ) {
         feedLoggRepository.save(FeedLogg(loggId = loggId, type = type, gjeldendeFnr = gjeldendeFnr))
     }
 }

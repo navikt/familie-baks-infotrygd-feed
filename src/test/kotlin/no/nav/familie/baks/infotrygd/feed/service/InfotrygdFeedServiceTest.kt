@@ -37,7 +37,6 @@ import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.InnholdVedtak a
 @ActiveProfiles("integrasjonstest")
 @Tag("integration")
 class InfotrygdFeedServiceTest {
-
     @Autowired
     private lateinit var infotrygdFeedService: InfotrygdFeedService
 
@@ -197,7 +196,11 @@ class InfotrygdFeedServiceTest {
         assertFeedLogg(key, KontantstøtteType.KS_StartBeh.name, fnrStønadsmottaker)
     }
 
-    private fun assertFeedLogg(loggId: UUID, type: String, gjeldendeFnr: String) {
+    private fun assertFeedLogg(
+        loggId: UUID,
+        type: String,
+        gjeldendeFnr: String,
+    ) {
         assertTrue { feedLoggRepository.existsByLoggIdAndTypeAndGjeldendeFnr(loggId, type, gjeldendeFnr) }
     }
 }

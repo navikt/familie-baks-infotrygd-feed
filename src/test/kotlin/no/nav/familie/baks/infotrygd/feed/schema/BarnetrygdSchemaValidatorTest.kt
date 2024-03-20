@@ -63,14 +63,14 @@ class BarnetrygdSchemaValidatorTest {
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
-            listOf(
-                BarnetrygdFeedElement(
-                    InnholdFødsel(fnrBarn = fnr),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = BarnetrygdType.BA_Foedsel_v1,
+                listOf(
+                    BarnetrygdFeedElement(
+                        InnholdFødsel(fnrBarn = fnr),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = BarnetrygdType.BA_Foedsel_v1,
+                    ),
                 ),
-            ),
         )
     }
 
@@ -79,14 +79,14 @@ class BarnetrygdSchemaValidatorTest {
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
-            listOf(
-                BarnetrygdFeedElement(
-                    innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = BarnetrygdType.BA_Vedtak_v1,
+                listOf(
+                    BarnetrygdFeedElement(
+                        innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = BarnetrygdType.BA_Vedtak_v1,
+                    ),
                 ),
-            ),
         )
     }
 
@@ -95,14 +95,14 @@ class BarnetrygdSchemaValidatorTest {
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
-            listOf(
-                BarnetrygdFeedElement(
-                    innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = BarnetrygdType.BA_StartBeh,
+                listOf(
+                    BarnetrygdFeedElement(
+                        innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = BarnetrygdType.BA_StartBeh,
+                    ),
                 ),
-            ),
         )
     }
 
@@ -110,11 +110,11 @@ class BarnetrygdSchemaValidatorTest {
         get() {
             val schemaNode = objectMapper.readTree(hentFeedSchema())
 
-            val URI = "https://json-schema.org/draft-04/schema"
-            val ID = "\$id"
+            val uri = "https://json-schema.org/draft-04/schema"
+            val id = "\$id"
             val myJsonMetaSchema =
-                JsonMetaSchema.Builder(URI)
-                    .idKeyword(ID)
+                JsonMetaSchema.Builder(uri)
+                    .idKeyword(id)
                     .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4))
                     .keywords(
                         listOf(
@@ -125,7 +125,7 @@ class BarnetrygdSchemaValidatorTest {
                     )
                     .build()
 
-            return JsonSchemaFactory.Builder().defaultMetaSchemaIri(URI).metaSchema(myJsonMetaSchema).build()
+            return JsonSchemaFactory.Builder().defaultMetaSchemaIri(uri).metaSchema(myJsonMetaSchema).build()
                 .getSchema(schemaNode)
         }
 

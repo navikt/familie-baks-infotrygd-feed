@@ -13,7 +13,6 @@ import java.util.concurrent.Executor
 
 @Component
 class KafkaErrorHandler : CommonContainerStoppingErrorHandler() {
-
     val logger: Logger = LoggerFactory.getLogger(KafkaErrorHandler::class.java)
     val secureLogger: Logger = LoggerFactory.getLogger("secureLogger")
 
@@ -63,7 +62,6 @@ class KafkaErrorHandler : CommonContainerStoppingErrorHandler() {
     }
 
     companion object {
-
         private val SHORT = Duration.ofSeconds(10).toMillis()
     }
 

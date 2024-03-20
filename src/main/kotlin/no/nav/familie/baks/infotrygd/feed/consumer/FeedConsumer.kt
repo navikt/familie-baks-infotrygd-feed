@@ -26,7 +26,6 @@ import java.util.concurrent.CountDownLatch
     matchIfMissing = false,
 )
 class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
-
     private var barnetrygdLatch: CountDownLatch = CountDownLatch(1)
     private var kontantstøtteLatch: CountDownLatch = CountDownLatch(1)
 
@@ -36,7 +35,10 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
         topics = [KafkaConfig.BARNETRYGD_FEED_TOPIC],
         containerFactory = "concurrentKafkaListenerContainerFactory",
     )
-    fun listenBarnetrygdFeed(consumerRecord: ConsumerRecord<String, String>, ack: Acknowledgment) {
+    fun listenBarnetrygdFeed(
+        consumerRecord: ConsumerRecord<String, String>,
+        ack: Acknowledgment,
+    ) {
         val data: String = consumerRecord.value()
         val key: String = consumerRecord.key()
 
@@ -54,6 +56,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
                     fnrStonadsmottaker = vedtakDto.fnrStoenadsmottaker,
                 )
             }
+
             BarnetrygdType.BA_Foedsel_v1 -> {
                 val fødselsDto = objectMapper.readValue(data, FødselsDto::class.java)
                 infotrygdFeedService.opprettBarnetrygdFeed(
@@ -62,6 +65,7 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
                     fnrBarn = fødselsDto.fnrBarn,
                 )
             }
+
             BarnetrygdType.BA_StartBeh -> {
                 val startBehandlingDto = objectMapper.readValue(data, StartBehandlingDto::class.java)
                 infotrygdFeedService.opprettBarnetrygdFeed(
@@ -82,7 +86,10 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
         topics = [KafkaConfig.KONTANTSTØTTE_FEED_TOPIC],
         containerFactory = "concurrentKafkaListenerContainerFactory",
     )
-    fun listenKontantstøtteFeed(consumerRecord: ConsumerRecord<String, String>, ack: Acknowledgment) {
+    fun listenKontantstøtteFeed(
+        consumerRecord: ConsumerRecord<String, String>,
+        ack: Acknowledgment,
+    ) {
         val data: String = consumerRecord.value()
         val key: String = consumerRecord.key()
 
@@ -100,8 +107,13 @@ class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
                     fnrStonadsmottaker = vedtakDto.fnrStoenadsmottaker,
                 )
             }
+
             KontantstøtteType.KS_StartBeh -> {
-                val startBehandlingDto = objectMapper.readValue(data, no.nav.familie.kontrakter.ks.infotrygd.feed.StartBehandlingDto::class.java)
+                val startBehandlingDto =
+                    objectMapper.readValue(
+                        data,
+                        no.nav.familie.kontrakter.ks.infotrygd.feed.StartBehandlingDto::class.java,
+                    )
                 infotrygdFeedService.opprettKontantstøtteFeed(
                     key = UUID.fromString(key),
                     type = request.type,
