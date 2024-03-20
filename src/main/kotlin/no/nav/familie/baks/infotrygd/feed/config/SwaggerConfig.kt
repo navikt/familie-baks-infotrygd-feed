@@ -21,7 +21,6 @@ class SwaggerConfig(
     @Value("\${API_SCOPE}")
     val apiScope: String,
 ) {
-
     @Bean
     fun tilbakekrevingApi(): OpenAPI {
         return OpenAPI().info(Info().title("BAKS Infotrygd Feed API").version("v1"))

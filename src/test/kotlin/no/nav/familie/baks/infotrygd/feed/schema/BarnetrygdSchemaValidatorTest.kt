@@ -23,7 +23,6 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 class BarnetrygdSchemaValidatorTest {
-
     @Test
     fun `Dto for fødsel validerer mot schema`() {
         val node = objectMapper.valueToTree<JsonNode>(testDtoForFødsel())
@@ -63,14 +62,15 @@ class BarnetrygdSchemaValidatorTest {
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
-            elementer = listOf(
-                BarnetrygdFeedElement(
-                    InnholdFødsel(fnrBarn = fnr),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = BarnetrygdType.BA_Foedsel_v1,
+            elementer =
+                listOf(
+                    BarnetrygdFeedElement(
+                        InnholdFødsel(fnrBarn = fnr),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = BarnetrygdType.BA_Foedsel_v1,
+                    ),
                 ),
-            ),
         )
     }
 
@@ -78,14 +78,15 @@ class BarnetrygdSchemaValidatorTest {
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
-            elementer = listOf(
-                BarnetrygdFeedElement(
-                    innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = BarnetrygdType.BA_Vedtak_v1,
+            elementer =
+                listOf(
+                    BarnetrygdFeedElement(
+                        innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = BarnetrygdType.BA_Vedtak_v1,
+                    ),
                 ),
-            ),
         )
     }
 
@@ -93,14 +94,15 @@ class BarnetrygdSchemaValidatorTest {
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
-            elementer = listOf(
-                BarnetrygdFeedElement(
-                    innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = BarnetrygdType.BA_StartBeh,
+            elementer =
+                listOf(
+                    BarnetrygdFeedElement(
+                        innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = BarnetrygdType.BA_StartBeh,
+                    ),
                 ),
-            ),
         )
     }
 
@@ -108,21 +110,22 @@ class BarnetrygdSchemaValidatorTest {
         get() {
             val schemaNode = objectMapper.readTree(hentFeedSchema())
 
-            val URI = "https://json-schema.org/draft-04/schema"
-            val ID = "\$id"
-            val myJsonMetaSchema = JsonMetaSchema.Builder(URI)
-                .idKeyword(ID)
-                .addKeywords(ValidatorTypeCode.getNonFormatKeywords(SpecVersion.VersionFlag.V4))
-                .addKeywords(
-                    listOf(
-                        NonValidationKeyword("\$schema"),
-                        NonValidationKeyword("\$id"),
-                        NonValidationKeyword("examples"),
-                    ),
-                )
-                .build()
+            val uri = "https://json-schema.org/draft-04/schema"
+            val id = "\$id"
+            val myJsonMetaSchema =
+                JsonMetaSchema.Builder(uri)
+                    .idKeyword(id)
+                    .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4))
+                    .keywords(
+                        listOf(
+                            NonValidationKeyword("\$schema"),
+                            NonValidationKeyword("\$id"),
+                            NonValidationKeyword("examples"),
+                        ),
+                    )
+                    .build()
 
-            return JsonSchemaFactory.Builder().defaultMetaSchemaURI(URI).addMetaSchema(myJsonMetaSchema).build()
+            return JsonSchemaFactory.Builder().defaultMetaSchemaIri(uri).metaSchema(myJsonMetaSchema).build()
                 .getSchema(schemaNode)
         }
 

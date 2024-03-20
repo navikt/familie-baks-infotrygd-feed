@@ -23,7 +23,6 @@ class KafkaConfig(
     @Value("\${KAFKA_CREDSTORE_PASSWORD}") private val kafkaCredstorePassword: String,
     @Value("\${KAFKA_KEYSTORE_PATH}") private val kafkaKeystorePath: String,
 ) {
-
     @Bean
     fun consumerFactory(): ConsumerFactory<String, String> {
         return DefaultKafkaConsumerFactory(consumerConfigs())
@@ -40,15 +39,16 @@ class KafkaConfig(
             setCommonErrorHandler(kafkaErrorHandler)
         }
 
-    fun consumerConfigs() = mapOf(
-        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaBrokers,
-        ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
-        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
-        ConsumerConfig.CLIENT_ID_CONFIG to "consumer-familie-baks-infotrygd-feed-1",
-        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest",
-        CommonClientConfigs.RETRIES_CONFIG to 10,
-        CommonClientConfigs.RETRY_BACKOFF_MS_CONFIG to 100,
-    ) + securityConfig()
+    fun consumerConfigs() =
+        mapOf(
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaBrokers,
+            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
+            ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
+            ConsumerConfig.CLIENT_ID_CONFIG to "consumer-familie-baks-infotrygd-feed-1",
+            ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest",
+            CommonClientConfigs.RETRIES_CONFIG to 10,
+            CommonClientConfigs.RETRY_BACKOFF_MS_CONFIG to 100,
+        ) + securityConfig()
 
     private fun securityConfig() =
         mapOf(
@@ -64,7 +64,6 @@ class KafkaConfig(
         )
 
     companion object {
-
         const val BARNETRYGD_FEED_TOPIC = "teamfamilie.aapen-feed-barnetrygd-v1"
         const val KONTANTSTØTTE_FEED_TOPIC = "teamfamilie.aapen-feed-kontantstotte-v1"
     }

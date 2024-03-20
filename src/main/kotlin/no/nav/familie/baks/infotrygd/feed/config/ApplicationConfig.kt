@@ -12,11 +12,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootConfiguration
 @ConfigurationPropertiesScan
-@EnableJpaRepositories(ApplicationConfig.pakkenavn)
+@EnableJpaRepositories(ApplicationConfig.PAKKENAVN)
 @EnableJwtTokenValidation(ignore = ["org.springframework", "org.springdoc"])
-@ComponentScan(ApplicationConfig.pakkenavn)
+@ComponentScan(ApplicationConfig.PAKKENAVN)
 class ApplicationConfig {
-
     @Bean
     fun logFilter(): FilterRegistrationBean<LogFilter> {
         logger.info("Registering LogFilter filter")
@@ -28,6 +27,6 @@ class ApplicationConfig {
 
     companion object {
         private val logger = LoggerFactory.getLogger(ApplicationConfig::class.java)
-        const val pakkenavn = "no.nav.familie.baks.infotrygd.feed"
+        const val PAKKENAVN = "no.nav.familie.baks.infotrygd.feed"
     }
 }

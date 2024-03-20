@@ -21,7 +21,6 @@ class BarnetrygdInfotrygdFeedController(
     private val infotrygdFeedService: InfotrygdFeedService,
     private val tilgangskontrollService: TilgangskontrollService,
 ) {
-
     @Operation(
         summary = "Hent liste med hendelser.",
         description = "Henter hendelser med sekvensId større enn sistLesteSekvensId.",
