@@ -20,7 +20,7 @@
         <java.version>21</java.version>
         <kotlin.version>1.9.24</kotlin.version>
         <felles.version>3.20240322152837_a01cd9d</felles.version>
-        <felles-kontrakter.version>3.0_20240410195617_6e9f1bf</felles-kontrakter.version>
+        <felles-kontrakter.version>3.0_20240506120136_2e7f6d9</felles-kontrakter.version>
         <token-validation-spring.version>4.1.4</token-validation-spring.version>
         <springdoc.version>2.5.0</springdoc.version>
     </properties>
