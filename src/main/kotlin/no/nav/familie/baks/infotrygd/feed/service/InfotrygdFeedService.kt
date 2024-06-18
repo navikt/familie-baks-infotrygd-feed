@@ -62,7 +62,8 @@ class InfotrygdFeedService(
             return
         }
         val erDuplikat =
-            type.takeIf { it == BarnetrygdType.BA_Foedsel_v1 }
+            type
+                .takeIf { it == BarnetrygdType.BA_Foedsel_v1 }
                 ?.let { barnetrygdFeedRepository.erDuplikatFoedselsmelding(type, fnrBarn!!) }
                 ?: false
 
