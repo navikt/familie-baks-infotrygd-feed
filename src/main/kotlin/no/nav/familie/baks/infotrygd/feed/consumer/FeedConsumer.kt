@@ -25,7 +25,9 @@ import java.util.concurrent.CountDownLatch
     havingValue = "true",
     matchIfMissing = false,
 )
-class FeedConsumer(private val infotrygdFeedService: InfotrygdFeedService) {
+class FeedConsumer(
+    private val infotrygdFeedService: InfotrygdFeedService,
+) {
     private var barnetrygdLatch: CountDownLatch = CountDownLatch(1)
     private var kontantstøtteLatch: CountDownLatch = CountDownLatch(1)
 

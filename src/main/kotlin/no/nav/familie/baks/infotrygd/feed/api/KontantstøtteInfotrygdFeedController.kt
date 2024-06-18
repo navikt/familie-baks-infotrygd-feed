@@ -33,18 +33,19 @@ class KontantstøtteInfotrygdFeedController(
     ): ResponseEntity<FeedMeldingDto> {
         tilgangskontrollService.sjekkTilgang()
 
-        return Result.runCatching {
-            infotrygdFeedService.hentKontantStøtteMeldingerFraFeed(sistLestSekvensId = sekvensnummer)
-        }.fold(
-            onSuccess = { feed ->
-                log.info("Hentet ${feed.elementer.size} feeds fra sekvensnummer $sekvensnummer")
-                ResponseEntity.ok(feed)
-            },
-            onFailure = {
-                log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
-                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            },
-        )
+        return Result
+            .runCatching {
+                infotrygdFeedService.hentKontantStøtteMeldingerFraFeed(sistLestSekvensId = sekvensnummer)
+            }.fold(
+                onSuccess = { feed ->
+                    log.info("Hentet ${feed.elementer.size} feeds fra sekvensnummer $sekvensnummer")
+                    ResponseEntity.ok(feed)
+                },
+                onFailure = {
+                    log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
+                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+                },
+            )
     }
 
     companion object {

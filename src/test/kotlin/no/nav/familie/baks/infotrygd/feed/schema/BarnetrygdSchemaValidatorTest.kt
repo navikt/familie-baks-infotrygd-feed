@@ -58,8 +58,8 @@ class BarnetrygdSchemaValidatorTest {
         assertEquals(1, feilListe.size)
     }
 
-    private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto {
-        return FeedMeldingDto(
+    private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto =
+        FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
@@ -72,10 +72,9 @@ class BarnetrygdSchemaValidatorTest {
                     ),
                 ),
         )
-    }
 
-    private fun testDtoForVedtak(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto {
-        return FeedMeldingDto(
+    private fun testDtoForVedtak(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto =
+        FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
@@ -88,10 +87,9 @@ class BarnetrygdSchemaValidatorTest {
                     ),
                 ),
         )
-    }
 
-    private fun testDtoForStartBehandling(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto {
-        return FeedMeldingDto(
+    private fun testDtoForStartBehandling(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto =
+        FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
@@ -104,7 +102,6 @@ class BarnetrygdSchemaValidatorTest {
                     ),
                 ),
         )
-    }
 
     private val schema: JsonSchema
         get() {
@@ -113,7 +110,8 @@ class BarnetrygdSchemaValidatorTest {
             val uri = "https://json-schema.org/draft-04/schema"
             val id = "\$id"
             val myJsonMetaSchema =
-                JsonMetaSchema.Builder(uri)
+                JsonMetaSchema
+                    .Builder(uri)
                     .idKeyword(id)
                     .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4))
                     .keywords(
@@ -122,10 +120,13 @@ class BarnetrygdSchemaValidatorTest {
                             NonValidationKeyword("\$id"),
                             NonValidationKeyword("examples"),
                         ),
-                    )
-                    .build()
+                    ).build()
 
-            return JsonSchemaFactory.Builder().defaultMetaSchemaIri(uri).metaSchema(myJsonMetaSchema).build()
+            return JsonSchemaFactory
+                .Builder()
+                .defaultMetaSchemaIri(uri)
+                .metaSchema(myJsonMetaSchema)
+                .build()
                 .getSchema(schemaNode)
         }
 

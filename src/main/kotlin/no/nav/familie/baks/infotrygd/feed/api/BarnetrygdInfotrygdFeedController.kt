@@ -33,18 +33,19 @@ class BarnetrygdInfotrygdFeedController(
     ): ResponseEntity<FeedMeldingDto> {
         tilgangskontrollService.sjekkTilgang()
 
-        return Result.runCatching {
-            infotrygdFeedService.hentBarnetrygdMeldingerFraFeed(sistLestSekvensId = sekvensnummer)
-        }.fold(
-            onSuccess = { feed ->
-                logger.info("Hentet ${feed.elementer.size} feeds fra sekvensnummer $sekvensnummer")
-                ResponseEntity.ok(feed)
-            },
-            onFailure = {
-                logger.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
-                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            },
-        )
+        return Result
+            .runCatching {
+                infotrygdFeedService.hentBarnetrygdMeldingerFraFeed(sistLestSekvensId = sekvensnummer)
+            }.fold(
+                onSuccess = { feed ->
+                    logger.info("Hentet ${feed.elementer.size} feeds fra sekvensnummer $sekvensnummer")
+                    ResponseEntity.ok(feed)
+                },
+                onFailure = {
+                    logger.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
+                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+                },
+            )
     }
 
     companion object {
