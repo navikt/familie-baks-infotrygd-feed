@@ -1,5 +1,6 @@
 package no.nav.familie.baks.infotrygd.feed.config
 
+import no.nav.familie.log.NavSystemtype
 import no.nav.familie.log.filter.LogFilter
 import no.nav.security.token.support.spring.api.EnableJwtTokenValidation
 import org.slf4j.LoggerFactory
@@ -20,7 +21,7 @@ class ApplicationConfig {
     fun logFilter(): FilterRegistrationBean<LogFilter> {
         logger.info("Registering LogFilter filter")
         return FilterRegistrationBean<LogFilter>().apply {
-            filter = LogFilter()
+            filter = LogFilter(NavSystemtype.NAV_INTEGRASJON)
             order = 1
         }
     }
