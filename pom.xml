@@ -18,7 +18,7 @@
         <sha1/>
         <changelist>-SNAPSHOT</changelist>
         <java.version>21</java.version>
-        <kotlin.version>2.1.0</kotlin.version>
+        <kotlin.version>2.1.10</kotlin.version>
         <felles.version>3.20250122103549_5bcb4dc</felles.version>
         <felles-kontrakter.version>3.0_20250110083551_c4fbcaf</felles-kontrakter.version>
         <token-validation-spring.version>5.0.14</token-validation-spring.version>
