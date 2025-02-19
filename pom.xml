@@ -156,7 +156,7 @@
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
             <scope>test</scope>
-            <version>1.5.5</version>
+            <version>1.5.6</version>
         </dependency>
 
         <!-- https://github.com/spring-projects/spring-boot/issues/33044#issuecomment-1379812611 -->
