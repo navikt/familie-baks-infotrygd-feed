@@ -14,22 +14,22 @@ jobs:
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp
-          RESOURCE: .deploy/nais/kafka/preprod/barnetrygd-feed-topic.yaml
+          RESOURCE: .deploy/nais/kafka/barnetrygd-feed-topic-dev.yaml
 
       - name: Deploy barnetrygd-feed-topic til prod
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: prod-gcp
-          RESOURCE: .deploy/nais/kafka/prod/barnetrygd-feed-topic.yaml
+          RESOURCE: .deploy/nais/kafka/barnetrygd-feed-topic-prod.yaml
 
       - name: Deploy kontantstøtte-feed-topic til dev
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp
-          RESOURCE: .deploy/nais/kafka/preprod/kontantstøtte-feed-topic.yaml
+          RESOURCE: .deploy/nais/kafka/kontantstøtte-feed-topic-dev.yaml
 
       - name: Deploy kontantstøtte-feed-topic til prod
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: prod-gcp
-          RESOURCE: .deploy/nais/kafka/prod/kontantstøtte-feed-topic.yaml
+          RESOURCE: .deploy/nais/kafka/kontantstøtte-feed-topic-prod.yaml
