@@ -10,26 +10,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy barnetrygd_feed_topic til dev
+      - name: Deploy barnetrygd-feed-topic til dev
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp
-          RESOURCE: .deploy/nais/kafka/preprod/barnetrygd_feed_topic.yaml
+          RESOURCE: .nais/kafka/barnetrygd-feed-topic-dev.yaml
 
-      - name: Deploy barnetrygd_feed_topic til prod
+      - name: Deploy barnetrygd-feed-topic til prod
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: prod-gcp
-          RESOURCE: .deploy/nais/kafka/prod/barnetrygd_feed_topic.yaml
+          RESOURCE: .nais/kafka/barnetrygd-feed-topic-prod.yaml
 
-      - name: Deploy kontantstøtte_feed_topic til dev
+      - name: Deploy kontantstøtte-feed-topic til dev
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp
-          RESOURCE: .deploy/nais/kafka/preprod/kontantstøtte_feed_topic.yaml
+          RESOURCE: .nais/kafka/kontantstøtte-feed-topic-dev.yaml
 
-      - name: Deploy kontantstøtte_feed_topic til prod
+      - name: Deploy kontantstøtte-feed-topic til prod
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: prod-gcp
-          RESOURCE: .deploy/nais/kafka/prod/kontantstøtte_feed_topic.yaml
+          RESOURCE: .nais/kafka/kontantstøtte-feed-topic-prod.yaml
