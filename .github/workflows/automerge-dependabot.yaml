@@ -13,5 +13,4 @@ jobs:
         uses: navikt/automerge-dependabot@main
         with:
           token: ${{ github.token }}
-          minimum-age-of-pr: '3'
-          ignored-dependencies: path-to-regexp@*
+          minimum-age-of-pr: '0'
