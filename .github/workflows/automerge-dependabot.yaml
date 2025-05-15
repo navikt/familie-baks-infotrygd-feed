@@ -15,4 +15,4 @@ jobs:
           token: ${{ github.token }}
           minimum-age-of-pr: '0'
           merge-method: 'squash'
-          always-allow: no.nav.familie.kontrakter
+          always-allow: no.nav.familie.kontrakter:barnetrygd,no.nav.familie.kontrakter:kontantstotte
