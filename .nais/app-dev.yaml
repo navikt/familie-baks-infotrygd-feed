@@ -63,6 +63,10 @@ spec:
         - application: infotrygd-feed-proxy-v2
           namespace: infotrygd
           cluster: dev-fss
+    outbound:
+      rules:
+        - application: logging
+          namespace: nais-system
 
   replicas:
     min: 1
