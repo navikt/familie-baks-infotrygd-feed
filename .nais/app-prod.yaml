@@ -71,10 +71,10 @@ spec:
     max: 1
   resources:
     limits:
-      memory: 1024Mi
+      memory: 576Mi
     requests:
-      memory: 512Mi
-      cpu: 500m
+      memory: 576Mi
+      cpu: 250m
   ingresses:
     - https://familie-baks-infotrygd-feed.intern.nav.no
   secureLogs:
