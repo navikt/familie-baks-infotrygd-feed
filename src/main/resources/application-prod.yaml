@@ -1,3 +1,3 @@
 AUTHORIZATION_URL: https://login.microsoftonline.com/navno.onmicrosoft.com/oauth2/v2.0/authorize
 TOKEN_URL: https://login.microsoftonline.com/navno.onmicrosoft.com/oauth2/v2.0/token
-TEAMFAMILIE_FORVALTNING_GROUP_ID: "3d718ae5-f25e-47a4-b4b3-084a97604c1d"
+TEAMFAMILIE_FORVALTNING_GROUP_ID: "024bfb25-ead3-4c04-bbe1-1db3d3362188"
