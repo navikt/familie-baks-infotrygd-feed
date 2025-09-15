@@ -44,7 +44,7 @@ spec:
         extra:
           - "NAVident"
         groups:
-          - id: "3d718ae5-f25e-47a4-b4b3-084a97604c1d" # teamfamilie-forvaltning
+          - id: "024bfb25-ead3-4c04-bbe1-1db3d3362188" # teamfamilie-forvaltning
       replyURLs:
         - "https://familie-baks-infotrygd-feed.intern.nav.no/swagger-ui/oauth2-redirect.html"
       singlePageApplication: true
