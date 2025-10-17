@@ -26,9 +26,9 @@ spec:
     enabled: false
   gcp: # Database
     sqlInstances:
-      - type: POSTGRES_14 # IF This is changed, all data will be lost. Read on nais.io how to upgrade
+      - type: POSTGRES_15 # IF This is changed, all data will be lost. Read on nais.io how to upgrade
         tier: db-custom-1-3840
-        name: familie-baks-infotrygd-feed
+        name: familie-baks-infotrygd-feed-15
         autoBackupHour: 2
         pointInTimeRecovery: true
         diskAutoresize: true
