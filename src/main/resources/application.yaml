@@ -16,14 +16,18 @@ spring:
   autoconfigure.exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
   main.banner-mode: "off"
   datasource:
+    url: ${DB_JDBC_URL}
     hikari:
       maximum-pool-size: 2
       connection-test-query: "select 1"
       max-lifetime: 30000
       minimum-idle: 1
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/familie-baks-infotrygd-feed
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+      data-source-properties:
+        ssl: true
+        sslmode: ${DB_SSLMODE}
+        sslcert: ${DB_SSLCERT}
+        sslkey: ${DB_SSLKEY_PK8}
+        sslrootcert: ${DB_SSLROOTCERT}
   jpa:
     hibernate:
       ddl-auto: none
