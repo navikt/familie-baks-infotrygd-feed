@@ -32,7 +32,7 @@ spec:
         autoBackupHour: 2
         pointInTimeRecovery: false
         diskAutoresize: true
-        highAvailability: true
+        highAvailability: false
         databases:
           - name: familie-baks-infotrygd-feed
             envVarPrefix: DB
