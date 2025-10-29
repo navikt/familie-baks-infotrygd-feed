@@ -5,7 +5,6 @@ import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.InnholdFødsel
 import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.InnholdStartBehandling
 import no.nav.familie.baks.infotrygd.feed.api.dto.barnetrygd.InnholdVedtak
 import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.KontantstøtteFeedElement
-import no.nav.familie.baks.infotrygd.feed.config.DbContainerInitializer
 import no.nav.familie.baks.infotrygd.feed.repo.FeedLoggRepository
 import no.nav.familie.baks.infotrygd.feed.repo.barnetrygd.BarnetrygdFeedRepository
 import no.nav.familie.baks.infotrygd.feed.repo.kontantstøtte.KontantstøtteFeedRepository
@@ -24,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.test.context.ActiveProfiles
-import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.time.LocalDate
 import java.util.UUID
@@ -33,8 +31,7 @@ import no.nav.familie.baks.infotrygd.feed.api.dto.kontantstøtte.InnholdVedtak a
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
-@ContextConfiguration(initializers = [DbContainerInitializer::class])
-@ActiveProfiles("integrasjonstest")
+@ActiveProfiles("integrasjonstest", "testcontainers")
 @Tag("integration")
 class InfotrygdFeedServiceTest {
     @Autowired
