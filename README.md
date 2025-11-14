@@ -4,6 +4,9 @@ Applikasjon for å publisere barnetrygd og kontantstøtte hendelser til infotryg
 Applikasjonen er deployert i GCP og brukes foreløpig av Kontantstøtte. 
 Barnetrygd kommer til å bruke denne i fremtiden ved behov.
 
+### Kode generert av GitHub Copilot
+Dette repoet bruker GitHub Copilot til å generere kode.
+
 # Kjøring lokalt
 `DevLauncher` kjører appen lokalt med Spring-profilen `dev` satt. Appen tilgjengeliggjøres da på `localhost:8094`.
 
