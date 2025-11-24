@@ -33,7 +33,7 @@ class KafkaConfig(
         ConcurrentKafkaListenerContainerFactory<String, String>().apply {
             setConcurrency(1)
             containerProperties.ackMode = ContainerProperties.AckMode.MANUAL
-            consumerFactory = consumerFactory()
+            setConsumerFactory(consumerFactory())
             setCommonErrorHandler(kafkaErrorHandler)
         }
 
