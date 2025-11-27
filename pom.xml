@@ -19,8 +19,8 @@
         <changelist>-SNAPSHOT</changelist>
         <java.version>21</java.version>
         <kotlin.version>2.2.21</kotlin.version>
-        <felles.version>3.20251105152539_b03ed80</felles.version>
-        <felles-kontrakter.version>3.0_20251106145307_0419786</felles-kontrakter.version>
+        <felles.version>4.20251125150711_2fff585</felles.version>
+        <felles-kontrakter.version>3.0_20251124143811_cb118c1</felles-kontrakter.version>
         <token-validation-spring.version>5.0.39</token-validation-spring.version>
         <springdoc.version>3.0.0</springdoc.version>
     </properties>
@@ -249,7 +249,7 @@
                     <dependency>
                         <groupId>com.pinterest.ktlint</groupId>
                         <artifactId>ktlint-cli</artifactId>
-                        <version>1.7.1</version>
+                        <version>1.8.0</version>
                     </dependency>
                     <!-- additional 3rd party ruleset(s) can be specified here -->
                 </dependencies>
