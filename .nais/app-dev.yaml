@@ -84,8 +84,6 @@ spec:
       cpu: 156m
   ingresses:
     - https://familie-baks-infotrygd-feed.intern.dev.nav.no
-  secureLogs:
-    enabled: true
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: preprod
