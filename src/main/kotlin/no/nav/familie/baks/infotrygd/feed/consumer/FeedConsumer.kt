@@ -7,7 +7,7 @@ import no.nav.familie.kontrakter.ba.infotrygd.feed.BarnetrygdType
 import no.nav.familie.kontrakter.ba.infotrygd.feed.FødselsDto
 import no.nav.familie.kontrakter.ba.infotrygd.feed.StartBehandlingDto
 import no.nav.familie.kontrakter.ba.infotrygd.feed.VedtakDto
-import no.nav.familie.kontrakter.felles.objectMapper
+import no.nav.familie.kontrakter.felles.jsonMapper
 import no.nav.familie.kontrakter.ks.infotrygd.feed.KontantstøtteFeedDto
 import no.nav.familie.kontrakter.ks.infotrygd.feed.KontantstøtteType
 import org.apache.kafka.clients.consumer.ConsumerRecord
@@ -47,10 +47,10 @@ class FeedConsumer(
         logger.info("Feed hendelse for Barnetrygd er mottatt i kafka for behandlingId $key")
         secureLogger.info("Feed hendelse for Barnetrygd er mottatt i kafka $consumerRecord for behandlingId $key")
 
-        val request: BarnetrygdFeedDto = objectMapper.readValue(data, BarnetrygdFeedDto::class.java)
+        val request: BarnetrygdFeedDto = jsonMapper.readValue(data, BarnetrygdFeedDto::class.java)
         when (request.type) {
             BarnetrygdType.BA_Vedtak_v1 -> {
-                val vedtakDto = objectMapper.readValue(data, VedtakDto::class.java)
+                val vedtakDto = jsonMapper.readValue(data, VedtakDto::class.java)
                 infotrygdFeedService.opprettBarnetrygdFeed(
                     key = UUID.fromString(key),
                     type = request.type,
@@ -60,7 +60,7 @@ class FeedConsumer(
             }
 
             BarnetrygdType.BA_Foedsel_v1 -> {
-                val fødselsDto = objectMapper.readValue(data, FødselsDto::class.java)
+                val fødselsDto = jsonMapper.readValue(data, FødselsDto::class.java)
                 infotrygdFeedService.opprettBarnetrygdFeed(
                     key = UUID.fromString(key),
                     type = request.type,
@@ -69,7 +69,7 @@ class FeedConsumer(
             }
 
             BarnetrygdType.BA_StartBeh -> {
-                val startBehandlingDto = objectMapper.readValue(data, StartBehandlingDto::class.java)
+                val startBehandlingDto = jsonMapper.readValue(data, StartBehandlingDto::class.java)
                 infotrygdFeedService.opprettBarnetrygdFeed(
                     key = UUID.fromString(key),
                     type = request.type,
@@ -98,10 +98,10 @@ class FeedConsumer(
         logger.info("Feed hendelse for \"Kontantstøtte\" er mottatt i kafka for behandlingId $key")
         secureLogger.info("Feed hendelse for \"Kontantstøtte\" er mottatt i kafka $consumerRecord for behandlingId $key")
 
-        val request: KontantstøtteFeedDto = objectMapper.readValue(data, KontantstøtteFeedDto::class.java)
+        val request: KontantstøtteFeedDto = jsonMapper.readValue(data, KontantstøtteFeedDto::class.java)
         when (request.type) {
             KontantstøtteType.KS_Vedtak -> {
-                val vedtakDto = objectMapper.readValue(data, no.nav.familie.kontrakter.ks.infotrygd.feed.VedtakDto::class.java)
+                val vedtakDto = jsonMapper.readValue(data, no.nav.familie.kontrakter.ks.infotrygd.feed.VedtakDto::class.java)
                 infotrygdFeedService.opprettKontantstøtteFeed(
                     key = UUID.fromString(key),
                     type = request.type,
@@ -112,7 +112,7 @@ class FeedConsumer(
 
             KontantstøtteType.KS_StartBeh -> {
                 val startBehandlingDto =
-                    objectMapper.readValue(
+                    jsonMapper.readValue(
                         data,
                         no.nav.familie.kontrakter.ks.infotrygd.feed.StartBehandlingDto::class.java,
                     )
