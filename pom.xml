@@ -18,7 +18,7 @@
         <sha1/>
         <changelist>-SNAPSHOT</changelist>
         <java.version>21</java.version>
-        <kotlin.version>2.2.21</kotlin.version>
+        <kotlin.version>2.3.0</kotlin.version>
         <felles.version>4.20251202092438_2d27579</felles.version>
         <felles-kontrakter.version>4.0_20260114164342_c2a77a4</felles-kontrakter.version>
         <token-validation-spring.version>6.0.1</token-validation-spring.version>
@@ -107,7 +107,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.8</version>
+            <version>42.7.9</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
