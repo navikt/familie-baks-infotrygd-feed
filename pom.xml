@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.0</version>
+        <version>4.0.1</version>
     </parent>
     <properties>
         <revision>1.0</revision>
@@ -20,9 +20,9 @@
         <java.version>25</java.version>
         <kotlin.version>2.3.0</kotlin.version>
         <felles.version>4.20251202092438_2d27579</felles.version>
-        <felles-kontrakter.version>3.0_20251128100735_eaf6aa1</felles-kontrakter.version>
-        <token-validation-spring.version>6.0.0</token-validation-spring.version>
-        <springdoc.version>3.0.0</springdoc.version>
+        <felles-kontrakter.version>4.0_20260114164342_c2a77a4</felles-kontrakter.version>
+        <token-validation-spring.version>6.0.1</token-validation-spring.version>
+        <springdoc.version>3.0.1</springdoc.version>
     </properties>
     <dependencies>
         <!-- Kotlin -->
@@ -58,6 +58,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jackson</artifactId>
         </dependency>
 
         <!-- NAV-interne avhengigheter -->
@@ -155,7 +159,7 @@
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
             <scope>test</scope>
-            <version>1.5.9</version>
+            <version>3.0.0</version>
         </dependency>
 
         <!-- https://github.com/spring-projects/spring-boot/issues/33044#issuecomment-1379812611 -->
