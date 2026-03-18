@@ -5,8 +5,6 @@ metadata:
   namespace: teamfamilie
   labels:
     team: teamfamilie
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-next-upstream-tries: '1'
 spec:
   image: {{image}}
   port: 8094
