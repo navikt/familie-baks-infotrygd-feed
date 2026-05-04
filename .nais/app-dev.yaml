@@ -30,7 +30,7 @@ spec:
   gcp: # Database
     sqlInstances:
       - type: POSTGRES_17 # IF This is changed, all data will be lost. Read on nais.io how to upgrade
-        tier: db-custom-1-3840
+        tier: db-f1-micro
         name: familie-baks-infotrygd-feed-17
         autoBackupHour: 2
         pointInTimeRecovery: false
@@ -76,10 +76,10 @@ spec:
     max: 1
   resources:
     limits:
-      memory: 544Mi
+      memory: 480Mi
     requests:
-      memory: 512Mi
-      cpu: 156m
+      memory: 480Mi
+      cpu: 80m
   ingresses:
     - https://familie-baks-infotrygd-feed.intern.dev.nav.no
   env:
