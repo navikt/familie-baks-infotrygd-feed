@@ -36,6 +36,7 @@ spec:
         pointInTimeRecovery: false
         diskAutoresize: true
         highAvailability: false
+        cascadingDelete: true
         databases:
           - name: familie-baks-infotrygd-feed
             envVarPrefix: DB
